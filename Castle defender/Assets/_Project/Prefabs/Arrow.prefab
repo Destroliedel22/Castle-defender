@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1296955424673931433}
   - component: {fileID: 630074723232468805}
   - component: {fileID: 2347147542510540461}
+  - component: {fileID: 5747159446822723148}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Arrow
@@ -215,6 +216,18 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &5747159446822723148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183688558640414425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a2ebfa4b6d08140ba4f6ca42172ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Arrow
 --- !u!1 &6645496188068771190
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +331,7 @@ GameObject:
   - component: {fileID: 3923843440792372064}
   - component: {fileID: 4402005930994000512}
   - component: {fileID: 8305672566581213980}
+  - component: {fileID: 1521059736793631077}
   m_Layer: 0
   m_Name: arrowhead
   m_TagString: Untagged
@@ -419,3 +433,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: fccf86917e7f8a242ae8cdd285805065, type: 3}
+--- !u!114 &1521059736793631077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318782263622955685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117b15857b4c26449b8442d528c666bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowHit

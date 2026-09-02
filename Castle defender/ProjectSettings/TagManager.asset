@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Arrow
+  - Enemy
+  - Ground
+  - Ricochet
   layers:
   - Default
   - TransparentFX

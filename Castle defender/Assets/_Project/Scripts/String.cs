@@ -36,6 +36,8 @@ public class String : MonoBehaviour
         {
             rb.MovePosition(startPos);
         }
+
+        rb.MoveRotation(stringRestPoint.rotation);
     }
 
     public void OnGrab(SelectEnterEventArgs args)

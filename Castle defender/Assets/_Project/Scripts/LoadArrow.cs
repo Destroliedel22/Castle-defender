@@ -3,24 +3,47 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class LoadArrow : MonoBehaviour
 {
-    private bool ArrowLoaded;
+    public GameObject arrowObject;
+    public bool arrowLoaded;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Arrow") && !ArrowLoaded)
+        if(other.CompareTag("Arrow") && !arrowLoaded)
         {
             XRGrabInteractable grabbable = other.GetComponentInParent<XRGrabInteractable>();
             if (grabbable != null && grabbable.isSelected)
             {
-                ArrowLoaded = true;
+                arrowLoaded = true;
+                arrowObject = grabbable.gameObject;
+
+                //Forces the hand to let go of the arrow
                 grabbable.interactionManager.SelectExit(grabbable.interactorsSelecting[0], grabbable);
-                grabbable.GetComponent<Rigidbody>().useGravity = false;
-                grabbable.GetComponent<Rigidbody>().isKinematic = true;
-                grabbable.GetComponent<Collider>().isTrigger = true;
-                grabbable.transform.position = transform.position;
-                grabbable.transform.rotation = transform.rotation;
-                grabbable.transform.parent = transform;
+
+                Load();
             }
         }
+    }
+
+    private void Load()
+    {
+        //Put the next 3 inside a function inside arrow script and call it here
+        arrowObject.GetComponent<Rigidbody>().useGravity = false;
+        arrowObject.GetComponent<Rigidbody>().isKinematic = true;
+        arrowObject.GetComponent<Collider>().isTrigger = true;
+
+        //Change to moving towards instead of teleport
+        arrowObject.transform.position = transform.position;
+        arrowObject.transform.rotation = transform.rotation;
+        arrowObject.transform.parent = transform;
+    }
+
+    public void Shoot()
+    {
+        //Put the next 3 inside a function inside arrow script and call it here
+        arrowObject.GetComponent<Rigidbody>().useGravity = true;
+        arrowObject.GetComponent<Rigidbody>().isKinematic = false;
+        arrowObject.GetComponent<Collider>().isTrigger = false;
+
+        arrowObject.transform.parent = null;
     }
 }

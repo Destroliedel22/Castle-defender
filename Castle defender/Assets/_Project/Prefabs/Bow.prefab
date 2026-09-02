@@ -532,6 +532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d732620daea7f244abf18b799ae07bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadArrow
+  arrowObject: {fileID: 0}
+  arrowLoaded: 0
 --- !u!1 &2230097919426703774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,9 +1207,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050fd900694269e47b5df5dd31a99f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::String
+  drawDistance: 0
   minDrawDistance: -0.06715268
   maxDrawDistance: 0.45
+  minArrowSpeed: 0
+  maxArrowSpeed: 25
   stringRestPoint: {fileID: 3147669163788675964}
+  loadArrow: {fileID: 7256670843449926848}
 --- !u!1 &4196014152286237062
 GameObject:
   m_ObjectHideFlags: 0

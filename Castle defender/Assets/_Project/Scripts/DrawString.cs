@@ -1,17 +1,22 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class String : MonoBehaviour
+public class DrawString : MonoBehaviour
 {
+    [HideInInspector] public float drawDistance;
+
     [SerializeField] private float minDrawDistance;
     [SerializeField] private float maxDrawDistance;
+    [SerializeField] private float minArrowSpeed;
+    [SerializeField] private float maxArrowSpeed;
     [SerializeField] private Transform stringRestPoint;
+    [SerializeField] private LoadArrow loadArrow;
 
     private Rigidbody rb;
     private Transform grabbedHand;
     private Vector3 startPos;
     private Vector3 drawAxis;
-    private float drawDistance;
+    private float clampDistance;
     private float grabOffset;
 
     private void Awake()
@@ -21,6 +26,11 @@ public class String : MonoBehaviour
 
     private void FixedUpdate()
     {
+        StringMovement();
+    }
+
+    private void StringMovement()
+    {
         startPos = stringRestPoint.position;
         drawAxis = stringRestPoint.up;
 
@@ -28,7 +38,7 @@ public class String : MonoBehaviour
         {
             Vector3 handDirection = grabbedHand.position - startPos;
             drawDistance = Vector3.Dot(handDirection, drawAxis) - grabOffset;
-            float clampDistance = Mathf.Clamp(drawDistance, minDrawDistance, maxDrawDistance);
+            clampDistance = Mathf.Clamp(drawDistance, minDrawDistance, maxDrawDistance);
             Vector3 pos = startPos + drawAxis * clampDistance;
             rb.MovePosition(pos);
         }
@@ -51,5 +61,16 @@ public class String : MonoBehaviour
     public void OnLetGo(SelectExitEventArgs args)
     {
         grabbedHand = null;
+        ShootArrow();
+    }
+
+    private void ShootArrow()
+    {
+        loadArrow.Shoot();
+        Rigidbody rb = loadArrow.arrowObject.GetComponent<Rigidbody>();
+        float releaseSpeed = Mathf.Lerp(minArrowSpeed, maxArrowSpeed, clampDistance / maxDrawDistance);
+        rb.AddForce(drawAxis * -releaseSpeed, ForceMode.VelocityChange);
+        loadArrow.arrowObject = null;
+        loadArrow.arrowLoaded = false;
     }
 }

@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    private GameObject HitObject; 
+    private GameObject HitObject;
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     public void OnHit(Collision collision)
     {
@@ -18,6 +24,15 @@ public class Arrow : MonoBehaviour
             case ("Ricochet"):
                 Ricochet();
                 break;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(rb.linearVelocity.magnitude > 5)
+        {
+            Vector3 direction = rb.linearVelocity;
+            transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
         }
     }
 

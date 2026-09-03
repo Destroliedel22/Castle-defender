@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    [SerializeField] private Collider tipCollider;
+
     private GameObject HitObject;
     private Rigidbody rb;
     private Collider col;
@@ -12,10 +14,19 @@ public class Arrow : MonoBehaviour
         col = GetComponent<Collider>();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Collider hitCollider = collision.GetContact(0).thisCollider;
+
+        if (hitCollider == tipCollider)
+            OnHit(collision);
+    }
+
+
     public void OnHit(Collision collision)
     {
         HitObject = collision.gameObject;
-        switch (HitObject.tag)
+        switch (LayerMask.LayerToName(HitObject.layer))
         {
             case ("Enemy"):
                 EnemyHit();
@@ -48,6 +59,9 @@ public class Arrow : MonoBehaviour
     private void EnemyHit()
     {
         print("Enemy hit");
+        HitObject.GetComponentInParent<Enemy>().Death();
+        transform.parent = HitObject.transform;
+        rb.isKinematic = true;
     }
 
     private void GroundHit()

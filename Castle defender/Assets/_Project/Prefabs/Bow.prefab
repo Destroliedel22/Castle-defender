@@ -160,6 +160,7 @@ MonoBehaviour:
   maxDrawDistance: 0.45
   minArrowSpeed: 0
   maxArrowSpeed: 25
+  ArrowLoadSpeed: 0.01
 --- !u!1 &855424213350061991
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LoadArrow
   arrowObject: {fileID: 0}
   arrowLoaded: 0
+  settings: {fileID: 1637996131251956593}
 --- !u!1 &2230097919426703774
 GameObject:
   m_ObjectHideFlags: 0

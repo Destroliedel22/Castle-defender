@@ -7,4 +7,6 @@ public class BowSettings : MonoBehaviour
 
     public float minArrowSpeed;
     public float maxArrowSpeed;
+
+    public float ArrowLoadSpeed;
 }

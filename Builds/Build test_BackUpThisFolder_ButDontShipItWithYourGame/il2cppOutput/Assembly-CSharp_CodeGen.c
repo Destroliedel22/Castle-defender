@@ -9,7 +9,10 @@
 
 extern void Readme__ctor_m69C325C4C171DCB0312B646A9034AA91EA8C39C6 (void);
 extern void Section__ctor_m5F732533E4DFC0167D965E5F5DB332E46055399B (void);
+extern void Arrow_Awake_m5B60AAB5B76381C2B5DB14A12A5898284158964A (void);
 extern void Arrow_OnHit_m9BC646632C2A5B930F2F88CFD81AC9AA864591E8 (void);
+extern void Arrow_FixedUpdate_m0C20F7DB2D510A3909B737C9CFBE3B907BB1ED75 (void);
+extern void Arrow_SwitchSettings_m0ED56D8A9553389BEC390E4FB8C1B003BA33FEF0 (void);
 extern void Arrow_EnemyHit_mB1991752988E1A07CAF934AA19D21D39B701220E (void);
 extern void Arrow_GroundHit_mCD0B965BE6A312F588652976CEFA626B59103E11 (void);
 extern void Arrow_Ricochet_m9E2DA239F446C7FCD7093D6C198B0924B25C050F (void);
@@ -30,11 +33,14 @@ extern void LoadArrow_Shoot_m6E81EA0C178ADAD60E721C720D5067728B635287 (void);
 extern void LoadArrow__ctor_m6DD013E4E7D197683D787DD359C172C5515DBA65 (void);
 extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033 (void);
 extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1 (void);
-static Il2CppMethodPointer s_methodPointers[23] = 
+static Il2CppMethodPointer s_methodPointers[26] = 
 {
 	Readme__ctor_m69C325C4C171DCB0312B646A9034AA91EA8C39C6,
 	Section__ctor_m5F732533E4DFC0167D965E5F5DB332E46055399B,
+	Arrow_Awake_m5B60AAB5B76381C2B5DB14A12A5898284158964A,
 	Arrow_OnHit_m9BC646632C2A5B930F2F88CFD81AC9AA864591E8,
+	Arrow_FixedUpdate_m0C20F7DB2D510A3909B737C9CFBE3B907BB1ED75,
+	Arrow_SwitchSettings_m0ED56D8A9553389BEC390E4FB8C1B003BA33FEF0,
 	Arrow_EnemyHit_mB1991752988E1A07CAF934AA19D21D39B701220E,
 	Arrow_GroundHit_mCD0B965BE6A312F588652976CEFA626B59103E11,
 	Arrow_Ricochet_m9E2DA239F446C7FCD7093D6C198B0924B25C050F,
@@ -56,11 +62,14 @@ static Il2CppMethodPointer s_methodPointers[23] =
 	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033,
 	UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1,
 };
-static const int32_t s_InvokerIndices[23] = 
+static const int32_t s_InvokerIndices[26] = 
 {
 	16580,
 	16580,
+	16580,
 	12350,
+	16580,
+	16580,
 	16580,
 	16580,
 	16580,
@@ -86,7 +95,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	23,
+	26,
 	s_methodPointers,
 	0,
 	NULL,

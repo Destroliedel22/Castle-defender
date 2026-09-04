@@ -37,8 +37,11 @@ public class Arrow : MonoBehaviour
                 break;
 
             case ("Ground"):
-                GroundHit();
-                Stuck();
+                if(IsShot)
+                {
+                    GroundHit();
+                    Stuck();
+                }
                 break;
 
             case ("Ricochet"):

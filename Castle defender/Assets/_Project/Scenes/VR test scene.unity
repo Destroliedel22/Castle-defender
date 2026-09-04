@@ -971,12 +971,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790654246}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.59913, y: -0, z: -0.57}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.71772, y: 0, z: -3.79472}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 800528742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800528741
 GameObject:
@@ -1013,6 +1013,7 @@ Transform:
   - {fileID: 510851226}
   - {fileID: 1841286120}
   - {fileID: 124091814}
+  - {fileID: 790654247}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &800528743
@@ -1037,7 +1038,10 @@ MonoBehaviour:
   enemies:
   - {fileID: 5219587149051898319, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
   - {fileID: 6101322159136297084, guid: dfd0910bc1f489e4199162af6697bb30, type: 3}
-  startEnemyAmount: 5
+  startEnemyAmount: 3
+  minEnemyIncrease: 1
+  maxEnemyIncrease: 3
+  target: {fileID: 790654247}
 --- !u!1001 &1214661675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1768,6 +1772,5 @@ SceneRoots:
   - {fileID: 1501551716}
   - {fileID: 2159305404802907391}
   - {fileID: 329597732534347267}
-  - {fileID: 790654247}
   - {fileID: 462668229}
   - {fileID: 800528742}

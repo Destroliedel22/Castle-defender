@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public event System.Action<Enemy> OnDeath;
+
+    public Transform target;
+
     [SerializeField] protected float WalkSpeed;
     [SerializeField] protected float MinAttackTimer;
     [SerializeField] protected float MaxAttackTimer;
-    [SerializeField] protected Transform Target;
 
     protected Animator animator;
     protected float attackTimer;
@@ -23,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, Target.position) < 1f)
+        if (Vector3.Distance(transform.position, target.position) < 1f)
         {
             animator.SetBool("Walking", false);
             if(attackTimer > 0f)
@@ -36,13 +39,15 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, WalkSpeed * Time.deltaTime);
-            transform.LookAt(Target);
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, WalkSpeed * Time.deltaTime);
+            transform.LookAt(target);
         }
     }
 
     public void Death()
     {
+        OnDeath?.Invoke(this);
         animator.enabled = false;
+        Destroy(this.gameObject, 2);
     }
 }

@@ -40,7 +40,7 @@ public class LoadArrow : MonoBehaviour
     public void Shoot()
     {
         arrowScript.SwitchSettings();
+        arrowScript.IsShot = true;
         arrowObject.transform.parent = null;
-
     }
 }

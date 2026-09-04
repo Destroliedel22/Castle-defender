@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    public bool IsShot;
+
     [SerializeField] private Collider tipCollider;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     private GameObject HitObject;
     private Rigidbody rb;
@@ -30,10 +33,14 @@ public class Arrow : MonoBehaviour
         {
             case ("Enemy"):
                 EnemyHit();
+                Stuck();
                 break;
+
             case ("Ground"):
                 GroundHit();
+                Stuck();
                 break;
+
             case ("Ricochet"):
                 Ricochet();
                 break;
@@ -42,10 +49,17 @@ public class Arrow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(rb.linearVelocity.magnitude > 5)
+        if(IsShot)
         {
             Vector3 direction = rb.linearVelocity;
             transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
+            if(trailRenderer.enabled == false)
+                trailRenderer.enabled = true;
+        }
+        else
+        {
+            if (trailRenderer.enabled == true)
+                trailRenderer.enabled = false;
         }
     }
 
@@ -60,8 +74,6 @@ public class Arrow : MonoBehaviour
     {
         print("Enemy hit");
         HitObject.GetComponentInParent<Enemy>().Death();
-        transform.parent = HitObject.transform;
-        rb.isKinematic = true;
     }
 
     private void GroundHit()
@@ -72,5 +84,12 @@ public class Arrow : MonoBehaviour
     private void Ricochet()
     {
         print("Ricochet");
+    }
+
+    private void Stuck()
+    {
+        transform.parent = HitObject.transform;
+        rb.isKinematic = true;
+        IsShot = false;
     }
 }

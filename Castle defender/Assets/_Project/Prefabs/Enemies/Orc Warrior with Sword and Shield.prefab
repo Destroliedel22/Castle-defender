@@ -1314,10 +1314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c65c852e79c1b4c9984f96cfdc059c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  WalkSpeed: 1
-  MinAttackTimer: 1
-  MaxAttackTimer: 10
   Target: {fileID: 0}
+  walkSpeed: 3
+  minAttackTimer: 1
+  maxAttackTimer: 10
 --- !u!1 &5250986641823363141
 GameObject:
   m_ObjectHideFlags: 0

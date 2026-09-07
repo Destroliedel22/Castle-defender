@@ -26,7 +26,7 @@ public class DrawString : MonoBehaviour
         animator.speed = 0;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         StringMovement();
     }
@@ -39,8 +39,14 @@ public class DrawString : MonoBehaviour
         if (grabbedHand)
         {
             Vector3 handDirection = grabbedHand.position - startPos;
-            drawDistance = Vector3.Dot(handDirection, drawAxis) - grabOffset;
+
+            //Where the hand is on the given axis
+            drawDistance = Vector3.Dot(handDirection, drawAxis);
+
+            //Distance keeps between the min and max
             clampDistance = Mathf.Clamp(drawDistance, settings.minDrawDistance, settings.maxDrawDistance);
+
+            //Calculates and sets the position of the string on the given axis according to where the hand is.
             Vector3 pos = startPos + drawAxis * clampDistance;
             rb.MovePosition(pos);
 
@@ -51,6 +57,7 @@ public class DrawString : MonoBehaviour
         else
         {
             rb.MovePosition(startPos);
+
             normalizedDraw -= 0.1f;
             animator.Play("Wooden Bow", 0, normalizedDraw);
         }
@@ -61,9 +68,6 @@ public class DrawString : MonoBehaviour
     public void OnGrab(SelectEnterEventArgs args)
     {
         grabbedHand = args.interactorObject.transform;
-
-        Vector3 initialHandDirection = grabbedHand.position - startPos;
-        grabOffset = Vector3.Dot(initialHandDirection, drawAxis);
     }
 
     public void OnLetGo(SelectExitEventArgs args)
@@ -78,8 +82,11 @@ public class DrawString : MonoBehaviour
         {
             loadArrow.Shoot();
             Rigidbody rb = loadArrow.arrowObject.GetComponent<Rigidbody>();
+
+            //Calculates how far the string is drawn for more force on the arrow
             float releaseSpeed = Mathf.Lerp(settings.minArrowSpeed, settings.maxArrowSpeed, clampDistance / settings.maxDrawDistance);
             rb.AddForce(drawAxis * -releaseSpeed, ForceMode.VelocityChange);
+
             loadArrow.arrowObject = null;
             loadArrow.arrowLoaded = false;
         }

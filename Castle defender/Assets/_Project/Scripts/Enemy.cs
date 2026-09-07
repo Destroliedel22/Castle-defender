@@ -4,7 +4,7 @@ public class Enemy : MonoBehaviour
 {
     public event System.Action<Enemy> OnDeath;
 
-    public Transform target;
+    [HideInInspector] public Transform target;
 
     [SerializeField] protected float WalkSpeed;
     [SerializeField] protected float MinAttackTimer;

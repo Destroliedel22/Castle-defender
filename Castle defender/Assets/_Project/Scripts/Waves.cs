@@ -29,6 +29,7 @@ public class Waves : MonoBehaviour
             GameObject enemy = enemies[Random.Range(0, enemies.Count)];
             GameObject clone = Instantiate(enemy, spawnPoint);
             aliveEnemies.Add(clone);
+
             Enemy enemyScript = clone.GetComponent<Enemy>();
             enemyScript.target = target;
             enemyScript.OnDeath += EnemyDeath;

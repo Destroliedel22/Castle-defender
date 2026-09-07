@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,16 +11,17 @@ public class Waves : MonoBehaviour
     [SerializeField] private int startEnemyAmount;
     [SerializeField] private int minEnemyIncrease;
     [SerializeField] private int maxEnemyIncrease;
+    [SerializeField] private float secondsBetweenSpawns;
     [SerializeField] private Transform target;
 
     private int currentWave = 0;
 
     private void Start()
     {
-        SpawnWave();
+        StartCoroutine(SpawnWave());
     }
-    
-    private void SpawnWave()
+
+    private IEnumerator SpawnWave()
     {
         currentWave++;
 
@@ -33,6 +35,7 @@ public class Waves : MonoBehaviour
             Enemy enemyScript = clone.GetComponent<Enemy>();
             enemyScript.target = target;
             enemyScript.OnDeath += EnemyDeath;
+            yield return new WaitForSeconds(secondsBetweenSpawns);
         }
     }
 
@@ -43,7 +46,7 @@ public class Waves : MonoBehaviour
         if(aliveEnemies.Count <= 0)
         {
             startEnemyAmount += Random.Range(minEnemyIncrease, maxEnemyIncrease);
-            SpawnWave();
+            StartCoroutine(SpawnWave());
         }
     }
 }

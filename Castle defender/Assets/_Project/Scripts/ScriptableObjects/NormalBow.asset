@@ -16,5 +16,5 @@ MonoBehaviour:
   MinDrawDistance: -0.06715268
   MaxDrawDistance: 0.45
   MinArrowSpeed: 0
-  MaxArrowSpeed: 25
+  MaxArrowSpeed: 30
   ArrowLoadSpeed: 0.01

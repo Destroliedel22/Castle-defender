@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2347147542510540461}
   - component: {fileID: 5747159446822723148}
   - component: {fileID: 5498689941365892902}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arrow
   m_TagString: Arrow
   m_Icon: {fileID: 0}
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arrow
   IsShot: 0
+  HasHit: 0
   tipCollider: {fileID: 5498689941365892902}
   trailRenderer: {fileID: 1198383387855444153}
 --- !u!65 &5498689941365892902
@@ -290,7 +291,7 @@ GameObject:
   - component: {fileID: 6563767914841719460}
   - component: {fileID: 8703823287645048256}
   - component: {fileID: 3291992854625771388}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arrow_stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2950426513347042055}
   - component: {fileID: 1198383387855444153}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -522,7 +523,7 @@ GameObject:
   - component: {fileID: 3260406316927308073}
   - component: {fileID: 3923843440792372064}
   - component: {fileID: 4402005930994000512}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: arrowhead
   m_TagString: Untagged
   m_Icon: {fileID: 0}

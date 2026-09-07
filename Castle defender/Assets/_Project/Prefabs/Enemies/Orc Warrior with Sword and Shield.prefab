@@ -250,7 +250,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.11494481
-  m_Center: {x: 0, y: 0.11494481, z: 0}
+  m_Center: {x: 0, y: 0.11494481, z: -0.04}
 --- !u!54 &4618399595411294741
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1271,7 +1271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5219587149051898319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.6710001, y: 0, z: 5.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1279,7 +1279,7 @@ Transform:
   - {fileID: 6902862776019466002}
   - {fileID: 5618109092117484765}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5348724575883134192
 Animator:
   serializedVersion: 7
@@ -1293,7 +1293,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: e87c45239bea6c043ae5f4c7225db8ce, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -1316,6 +1316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   Target: {fileID: 0}
   walkSpeed: 1
+  climbTime: 3
   minAttackTimer: 1
   maxAttackTimer: 10
 --- !u!1 &5250986641823363141
@@ -2312,6 +2313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3271299304948653843}
+  - component: {fileID: 2231347065949061621}
   m_Layer: 6
   m_Name: Bip001 Spine1
   m_TagString: Untagged
@@ -2337,6 +2339,27 @@ Transform:
   - {fileID: 6701788890702011837}
   m_Father: {fileID: 1427474534694077457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2231347065949061621
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8514644400574703132}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.44925007, y: 0.12449242, z: 0.3080913}
+  m_Center: {x: -0.0117435325, y: 0.27793872, z: -0.0003130335}
 --- !u!1 &8717369021213140581
 GameObject:
   m_ObjectHideFlags: 0

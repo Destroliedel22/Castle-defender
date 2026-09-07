@@ -76,7 +76,6 @@ public class Arrow : MonoBehaviour
     {
         rb.useGravity = !rb.useGravity;
         rb.isKinematic = !rb.isKinematic;
-        col.isTrigger = !col.isTrigger;
     }
 
     private void EnemyHit()

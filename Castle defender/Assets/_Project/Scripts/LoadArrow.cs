@@ -12,7 +12,7 @@ public class LoadArrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Arrow") && !ArrowLoaded)
+        if (!ArrowLoaded && other.CompareTag("Arrow"))
         {
             XRGrabInteractable grabbable = other.GetComponentInParent<XRGrabInteractable>();
             if (grabbable != null && grabbable.isSelected)

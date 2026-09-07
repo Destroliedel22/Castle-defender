@@ -6,11 +6,11 @@ public class Waves : MonoBehaviour
 {
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
     [SerializeField] private List<GameObject> enemies = new List<GameObject>();
+    [SerializeField] private List<Transform> ladders = new List<Transform>();
     [SerializeField] private int startEnemyAmount;
     [SerializeField] private int minEnemyIncrease;
     [SerializeField] private int maxEnemyIncrease;
     [SerializeField] private float secondsBetweenSpawns;
-    [SerializeField] private Transform target;
 
     private List<GameObject> aliveEnemies = new List<GameObject>();
     private int currentWave = 0;
@@ -32,7 +32,7 @@ public class Waves : MonoBehaviour
             aliveEnemies.Add(clone);
 
             Enemy enemyScript = clone.GetComponent<Enemy>();
-            enemyScript.Target = target;
+            enemyScript.Target = ladders[Random.Range(0, ladders.Count)];
             enemyScript.OnDeath += EnemyDeath;
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }

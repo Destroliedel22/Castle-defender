@@ -1958,7 +1958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f5650950035994fae4092c6ddb185e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArrowPouch
-  activate: 0
   arrowTransform: {fileID: 7819160872413839141}
   arrowPrefab: {fileID: 3183688558640414425, guid: 9caa77408d0e4c74e8336803b16ccfe5, type: 3}
 --- !u!1 &2312364155908310957

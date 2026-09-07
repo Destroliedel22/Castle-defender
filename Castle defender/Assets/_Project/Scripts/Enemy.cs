@@ -41,7 +41,9 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, walkSpeed * Time.deltaTime);
+            Vector3 pos = Vector3.MoveTowards(transform.position, Target.transform.position, walkSpeed * Time.deltaTime);
+            pos.y = Terrain.activeTerrain.SampleHeight(pos);
+            transform.position = pos;
             transform.LookAt(Target);
         }
     }

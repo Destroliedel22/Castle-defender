@@ -630,7 +630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0c7375fce786348be9b3d1fbab9a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Waves
-  aliveEnemies: []
   spawnPoints:
   - {fileID: 132580030}
   - {fileID: 1875171837}

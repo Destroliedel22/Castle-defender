@@ -3,8 +3,8 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class LoadArrow : MonoBehaviour
 {
-    public GameObject arrowObject;
-    public bool arrowLoaded;
+    public GameObject ArrowObject;
+    public bool ArrowLoaded;
 
     [SerializeField] private BowSettings settings;
 
@@ -12,13 +12,13 @@ public class LoadArrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Arrow") && !arrowLoaded)
+        if(other.CompareTag("Arrow") && !ArrowLoaded)
         {
             XRGrabInteractable grabbable = other.GetComponentInParent<XRGrabInteractable>();
             if (grabbable != null && grabbable.isSelected)
             {
-                arrowLoaded = true;
-                arrowObject = grabbable.gameObject;
+                ArrowLoaded = true;
+                ArrowObject = grabbable.gameObject;
 
                 //Forces the hand to let go of the arrow
                 grabbable.interactionManager.SelectExit(grabbable.interactorsSelecting[0], grabbable);
@@ -30,17 +30,17 @@ public class LoadArrow : MonoBehaviour
 
     private void Load()
     {
-        arrowScript = arrowObject.GetComponent<Arrow>();
+        arrowScript = ArrowObject.GetComponent<Arrow>();
         arrowScript.SwitchSettings();
-        arrowObject.transform.position = transform.position;
-        arrowObject.transform.rotation = transform.rotation;
-        arrowObject.transform.parent = transform;
+        ArrowObject.transform.position = transform.position;
+        ArrowObject.transform.rotation = transform.rotation;
+        ArrowObject.transform.parent = transform;
     }
 
     public void Shoot()
     {
         arrowScript.SwitchSettings();
         arrowScript.IsShot = true;
-        arrowObject.transform.parent = null;
+        ArrowObject.transform.parent = null;
     }
 }

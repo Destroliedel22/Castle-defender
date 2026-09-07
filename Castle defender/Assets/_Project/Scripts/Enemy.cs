@@ -4,14 +4,16 @@ public class Enemy : MonoBehaviour
 {
     public event System.Action<Enemy> OnDeath;
 
-    [HideInInspector] public Transform target;
+    [HideInInspector] public Transform Target;
 
-    [SerializeField] protected float WalkSpeed;
-    [SerializeField] protected float MinAttackTimer;
-    [SerializeField] protected float MaxAttackTimer;
+    [SerializeField] protected float walkSpeed;
+    [SerializeField] protected float minAttackTimer;
+    [SerializeField] protected float maxAttackTimer;
 
     protected Animator animator;
     protected float attackTimer;
+
+    private const string WALKING_STATE = "Walking";
 
     private void Awake()
     {
@@ -20,27 +22,27 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        animator.SetBool("Walking", true);
-        attackTimer = Random.Range(MinAttackTimer, MaxAttackTimer);
+        animator.SetBool(WALKING_STATE, true);
+        attackTimer = Random.Range(minAttackTimer, maxAttackTimer);
     }
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, target.position) < 1f)
+        if (Vector3.Distance(transform.position, Target.position) < 1f)
         {
-            animator.SetBool("Walking", false);
+            animator.SetBool(WALKING_STATE, false);
             if(attackTimer > 0f)
                 attackTimer -= Time.deltaTime;
             else
             {
                 animator.SetTrigger("Attack");
-                attackTimer = Random.Range(MinAttackTimer, MaxAttackTimer);
+                attackTimer = Random.Range(minAttackTimer, maxAttackTimer);
             }
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, WalkSpeed * Time.deltaTime);
-            transform.LookAt(target);
+            transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, walkSpeed * Time.deltaTime);
+            transform.LookAt(Target);
         }
     }
 

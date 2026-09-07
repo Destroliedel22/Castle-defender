@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Waves : MonoBehaviour
 {
-    public List<GameObject> aliveEnemies = new List<GameObject>();
-
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
     [SerializeField] private List<GameObject> enemies = new List<GameObject>();
     [SerializeField] private int startEnemyAmount;
@@ -14,6 +12,7 @@ public class Waves : MonoBehaviour
     [SerializeField] private float secondsBetweenSpawns;
     [SerializeField] private Transform target;
 
+    private List<GameObject> aliveEnemies = new List<GameObject>();
     private int currentWave = 0;
 
     private void Start()
@@ -33,7 +32,7 @@ public class Waves : MonoBehaviour
             aliveEnemies.Add(clone);
 
             Enemy enemyScript = clone.GetComponent<Enemy>();
-            enemyScript.target = target;
+            enemyScript.Target = target;
             enemyScript.OnDeath += EnemyDeath;
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }

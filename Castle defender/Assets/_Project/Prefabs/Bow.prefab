@@ -97,7 +97,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7010010813965082285}
   - component: {fileID: 3723069234187036783}
-  - component: {fileID: 1637996131251956593}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -144,23 +143,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1637996131251956593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823531388432340578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adc11ae40d1504e4b8f0d6fcad2c0f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BowSettings
-  minDrawDistance: -0.06715268
-  maxDrawDistance: 0.45
-  minArrowSpeed: 0
-  maxArrowSpeed: 25
-  ArrowLoadSpeed: 0.01
 --- !u!1 &855424213350061991
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,9 +532,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d732620daea7f244abf18b799ae07bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadArrow
-  arrowObject: {fileID: 0}
-  arrowLoaded: 0
-  settings: {fileID: 1637996131251956593}
+  ArrowObject: {fileID: 0}
+  ArrowLoaded: 0
+  settings: {fileID: 0}
 --- !u!1 &2230097919426703774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,8 +1208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050fd900694269e47b5df5dd31a99f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::String
-  drawDistance: 0
-  settings: {fileID: 1637996131251956593}
+  DrawDistance: 0
+  settings: {fileID: 11400000, guid: 9c725d10e272b6a48ad3c6f82914cec2, type: 2}
   stringRestPoint: {fileID: 3147669163788675964}
   loadArrow: {fileID: 7256670843449926848}
 --- !u!1 &4196014152286237062

@@ -1,13 +1,15 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public bool IsShot;
+    [HideInInspector] public bool IsShot;
+    [HideInInspector] public bool HasHit;
 
     [SerializeField] private Collider tipCollider;
     [SerializeField] private TrailRenderer trailRenderer;
 
-    private GameObject HitObject;
+    private GameObject hitObject;
     private Rigidbody rb;
     private Collider col;
 
@@ -28,25 +30,29 @@ public class Arrow : MonoBehaviour
 
     public void OnHit(Collision collision)
     {
-        HitObject = collision.gameObject;
-        switch (LayerMask.LayerToName(HitObject.layer))
+        if (!HasHit)
         {
-            case ("Enemy"):
-                EnemyHit();
-                Stuck();
-                break;
-
-            case ("Ground"):
-                if(IsShot)
-                {
-                    GroundHit();
+            HasHit = true;
+            hitObject = collision.gameObject;
+            switch (LayerMask.LayerToName(hitObject.layer))
+            {
+                case ("Enemy"):
+                    EnemyHit();
                     Stuck();
-                }
-                break;
+                    break;
 
-            case ("Ricochet"):
-                Ricochet();
-                break;
+                case ("Ground"):
+                    if (IsShot)
+                    {
+                        GroundHit();
+                        Stuck();
+                    }
+                    break;
+
+                case ("Ricochet"):
+                    Ricochet();
+                    break;
+            }
         }
     }
 
@@ -76,7 +82,7 @@ public class Arrow : MonoBehaviour
     private void EnemyHit()
     {
         print("Enemy hit");
-        HitObject.GetComponentInParent<Enemy>().Death();
+        hitObject.GetComponentInParent<Enemy>().Death();
     }
 
     private void GroundHit()
@@ -91,7 +97,7 @@ public class Arrow : MonoBehaviour
 
     private void Stuck()
     {
-        transform.parent = HitObject.transform;
+        transform.parent = hitObject.transform;
         rb.isKinematic = true;
         IsShot = false;
     }

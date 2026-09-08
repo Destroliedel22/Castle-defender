@@ -6,7 +6,7 @@ public class LoadArrow : MonoBehaviour
     public GameObject ArrowObject;
     public bool ArrowLoaded;
 
-    [SerializeField] private BowSettings settings;
+    [SerializeField] private PlayerSettings settings;
 
     private Arrow arrowScript;
 

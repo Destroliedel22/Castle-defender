@@ -1,5 +1,7 @@
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class Arrow : MonoBehaviour
 {
@@ -11,12 +13,12 @@ public class Arrow : MonoBehaviour
 
     private GameObject hitObject;
     private Rigidbody rb;
-    private Collider col;
+    private XRGrabInteractable grabbable;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        col = GetComponent<Collider>();
+        grabbable = GetComponent<XRGrabInteractable>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,7 +43,7 @@ public class Arrow : MonoBehaviour
                     Stuck();
                     break;
 
-                case ("Ground"):
+                case ("Default"):
                     if (IsShot)
                     {
                         GroundHit();
@@ -76,6 +78,7 @@ public class Arrow : MonoBehaviour
     {
         rb.useGravity = !rb.useGravity;
         rb.isKinematic = !rb.isKinematic;
+        grabbable.enabled = !grabbable.enabled;
     }
 
     private void EnemyHit()

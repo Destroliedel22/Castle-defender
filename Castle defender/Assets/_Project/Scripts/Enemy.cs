@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector] public Transform Target;
 
+    [SerializeField] protected int dmg;
+
     [SerializeField] protected float walkSpeed = 1;
     [SerializeField] protected float climbTime = 5;
     [SerializeField] protected float minAttackTimer = 1;
@@ -98,7 +100,11 @@ public class Enemy : MonoBehaviour
             case EnemyState.Attacking:
                 animator.SetBool(WALKING_STATE, false);
                 Attack();
-                break;
+                if (Vector3.Distance(transform.position, Target.position) > 1f)
+                {
+                    enemyState = EnemyState.Walking;
+                }
+                    break;
 
         }
     }
@@ -121,6 +127,7 @@ public class Enemy : MonoBehaviour
         {
             attackTimer = Random.Range(minAttackTimer, maxAttackTimer);
             animator.SetTrigger(ATTACKING_STATE);
+            Target.GetComponent<Player>().Health -= dmg;
         }
     }
 

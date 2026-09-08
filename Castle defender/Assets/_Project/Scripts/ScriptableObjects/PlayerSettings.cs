@@ -1,9 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BowSettings", menuName = "Scriptable Objects/BowSettings")]
-public class BowSettings : ScriptableObject
+[CreateAssetMenu(fileName = "PlayerSettings", menuName = "Scriptable Objects/PlayerSettings")]
+public class PlayerSettings : ScriptableObject
 {
-    public string BowName;
+    public int Health;
 
     public float MinDrawDistance;
     public float MaxDrawDistance;

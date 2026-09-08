@@ -1430,6 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   Target: {fileID: 0}
+  dmg: 25
   walkSpeed: 1
   climbTime: 5
   minAttackTimer: 1

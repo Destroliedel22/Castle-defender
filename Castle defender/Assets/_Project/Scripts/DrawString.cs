@@ -5,7 +5,7 @@ public class DrawString : MonoBehaviour
 {
     [HideInInspector] public float DrawDistance;
 
-    [SerializeField] private BowSettings settings;
+    [SerializeField] private PlayerSettings settings;
     [SerializeField] private Transform stringRestPoint;
     [SerializeField] private LoadArrow loadArrow;
 

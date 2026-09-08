@@ -16,6 +16,8 @@ public class Arrow : MonoBehaviour
     private Rigidbody rb;
     private XRGrabInteractable grabbable;
 
+    private float lastVelocity;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,8 +35,7 @@ public class Arrow : MonoBehaviour
 
     public void OnHit(Collision collision)
     {
-        Debug.Log(rb.linearVelocity.magnitude);
-        if (!HasHit && rb.linearVelocity.magnitude > killVelocity)
+        if (!HasHit && lastVelocity > killVelocity)
         {
             HasHit = true;
             hitObject = collision.gameObject;
@@ -69,11 +70,8 @@ public class Arrow : MonoBehaviour
             if(trailRenderer.enabled == false)
                 trailRenderer.enabled = true;
         }
-        else
-        {
-            if (trailRenderer.enabled == true)
-                trailRenderer.enabled = false;
-        }
+        if (!HasHit)
+            lastVelocity = rb.linearVelocity.magnitude;
     }
 
     public void SwitchSettings()
@@ -104,5 +102,6 @@ public class Arrow : MonoBehaviour
         transform.parent = hitObject.transform;
         rb.isKinematic = true;
         IsShot = false;
+        trailRenderer.enabled = false;
     }
 }

@@ -1316,9 +1316,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   Target: {fileID: 0}
   walkSpeed: 1
-  climbTime: 3
+  climbTime: 5
   minAttackTimer: 1
-  maxAttackTimer: 10
+  maxAttackTimer: 5
+  walkToClimbDelay: 1
+  climbToWalkDelay: 2
 --- !u!1 &5250986641823363141
 GameObject:
   m_ObjectHideFlags: 0

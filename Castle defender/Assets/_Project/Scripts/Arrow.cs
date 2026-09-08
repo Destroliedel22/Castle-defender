@@ -10,6 +10,7 @@ public class Arrow : MonoBehaviour
 
     [SerializeField] private Collider tipCollider;
     [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private float killVelocity = 2;
 
     private GameObject hitObject;
     private Rigidbody rb;
@@ -32,7 +33,8 @@ public class Arrow : MonoBehaviour
 
     public void OnHit(Collision collision)
     {
-        if (!HasHit)
+        Debug.Log(rb.linearVelocity.magnitude);
+        if (!HasHit && rb.linearVelocity.magnitude > killVelocity)
         {
             HasHit = true;
             hitObject = collision.gameObject;

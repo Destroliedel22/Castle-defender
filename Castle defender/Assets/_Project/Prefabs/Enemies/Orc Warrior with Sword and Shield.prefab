@@ -1321,7 +1321,7 @@ MonoBehaviour:
   minAttackTimer: 1
   maxAttackTimer: 5
   walkToClimbDelay: 1
-  climbToWalkDelay: 2
+  climbToWalkDelay: 3
 --- !u!1 &5250986641823363141
 GameObject:
   m_ObjectHideFlags: 0

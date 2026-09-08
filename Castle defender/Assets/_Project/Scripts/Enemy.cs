@@ -140,7 +140,7 @@ public class Enemy : MonoBehaviour
 
         float rotationOffset = 20;
 
-        transform.rotation = Quaternion.Euler(transform.rotation.x + rotationOffset, transform.rotation.y, transform.rotation.z);
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x + rotationOffset, transform.eulerAngles.y, transform.eulerAngles.z);
 
         animator.SetBool(WALKING_STATE, false);
         animator.SetBool(CLIMBING_STATE, true);
@@ -162,9 +162,21 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
 
-        transform.position = endPos;
+        Quaternion startRot = transform.rotation;
+        Quaternion endRot = Quaternion.Euler(transform.eulerAngles.x - rotationOffset, transform.eulerAngles.y, transform.eulerAngles.z);
+        time = 0;
 
-        transform.rotation = Quaternion.Euler(transform.rotation.x - rotationOffset, transform.rotation.y, transform.rotation.z);
+        while (time < 1f)
+        {
+            time += Time.deltaTime;
+            float progress = time / 1f;
+
+            transform.rotation = Quaternion.Slerp(startRot, endRot, progress);
+
+            yield return null;
+        }
+
+        transform.position = endPos;
     }
 
     public void Death()

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2086715715575953685}
   - component: {fileID: 4545551743362947260}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Upper_Upper_Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7486249814155389572}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,9 +97,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7010010813965082285}
   - component: {fileID: 3723069234187036783}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bow
-  m_TagString: Untagged
+  m_TagString: Bow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8348725804432601559}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6530222050104094729}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.bone.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8549694957035730152}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wooden Bow_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5289509986963796217}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.bone.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2939199843304591861}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.ik_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3105755527281109589}
   - component: {fileID: 612510324717660090}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Upper_Lower_Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3369129268167882640}
   - component: {fileID: 163605085194678957}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lower_Upper_Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3413623267431422135}
   - component: {fileID: 4809113852949889835}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lower_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3147669163788675964}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: StringRestPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6942636442657006846}
   - component: {fileID: 3473390579174529929}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3978782684993524911}
   - component: {fileID: 3250037428708523366}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wooden bow_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,7 +771,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4318363867554506769}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.horn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,7 +803,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1511424992093151333}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.bone.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4881533856300689598}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -922,7 +922,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6301914905659953165}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,7 +954,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3358552325753511007}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.bone.005_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1221,7 +1221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5909714285636008725}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.bone.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1254,7 +1254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8339312265931404002}
   - component: {fileID: 2255252380518274564}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lower_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1307,7 +1307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7365747670836358385}
   - component: {fileID: 7973832462914052881}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Upper_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1360,7 +1360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9078958010617603011}
   - component: {fileID: 4580745267519159348}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Upper_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1414,7 +1414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1526212428507308133}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.bone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1448,7 +1448,7 @@ GameObject:
   - component: {fileID: 3185283849024614610}
   - component: {fileID: 5367117081191299907}
   - component: {fileID: 905509677724797452}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1686,7 +1686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 57517642164592405}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.bone.005_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3555922788674665657}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.ik
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1749,7 +1749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5994887764641160181}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.horn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1781,7 +1781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 540484053068652068}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.bone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1813,7 +1813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 889489545433730301}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.horn_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1844,7 +1844,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6507097938358721099}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1885,7 +1885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7593116332016095241}
   - component: {fileID: 2089367557914264420}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lower_Lower_Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1937,7 +1937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4415935014692614363}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.ik_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1968,7 +1968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2147400795418610414}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2000,7 +2000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1055608062078832898}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.ik
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2087,7 +2087,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8342950810472694939}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.bone.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2119,7 +2119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3697935693691525959}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.horn_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2150,7 +2150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5457914359842360555}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.top.bone.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2182,7 +2182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3052561287211525699}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WB.down.shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

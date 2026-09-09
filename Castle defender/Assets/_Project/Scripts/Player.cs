@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(Health <= 0)
+        if (Health <= 0)
         {
             if (color.a < 1)
             {

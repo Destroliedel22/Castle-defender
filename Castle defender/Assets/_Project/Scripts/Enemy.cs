@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
 
             case EnemyState.Attacking:
                 HandleAttackState();
-                    break;
+                break;
 
         }
     }

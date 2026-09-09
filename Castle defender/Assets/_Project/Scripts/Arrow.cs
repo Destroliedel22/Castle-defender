@@ -63,11 +63,11 @@ public class Arrow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(IsShot)
+        if (IsShot)
         {
             Vector3 direction = rb.linearVelocity;
             transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
-            if(trailRenderer.enabled == false)
+            if (trailRenderer.enabled == false)
                 trailRenderer.enabled = true;
         }
         if (!HasHit)

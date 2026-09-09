@@ -13,7 +13,7 @@ public class BowDeathZone : MonoBehaviour
             rb.position = tpTransform.position;
         }
 
-        if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             other.transform.position = tpTransform.position;
     }
 }

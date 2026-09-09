@@ -41,10 +41,14 @@ public class Waves : MonoBehaviour
     private void EnemyDeath(Enemy enemy)
     {
         enemy.OnDeath -= EnemyDeath;
+
+        HighScore.Instance.EnemiesKilled++;
+
         aliveEnemies.Remove(enemy.gameObject);
-        if(aliveEnemies.Count <= 0)
+        if (aliveEnemies.Count <= 0)
         {
             startEnemyAmount += Random.Range(minEnemyIncrease, maxEnemyIncrease);
+            HighScore.Instance.WavesSurvived++;
             StartCoroutine(SpawnWave());
         }
     }

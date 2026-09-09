@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static event System.Action GameOver;
+
     public PlayerSettings Settings;
     public int Health;
 
@@ -28,7 +30,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                //GameOver
+                GameOver?.Invoke();
             }
         }
     }

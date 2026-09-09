@@ -15,7 +15,19 @@ public class Waves : MonoBehaviour
     private List<GameObject> aliveEnemies = new List<GameObject>();
     private int currentWave = 0;
 
-    private void Start()
+    private void OnEnable()
+    {
+        ButtonManager.OnStartGame += StartGame;
+        Player.GameOver += GameOver;
+    }
+
+    private void OnDisable()
+    {
+        ButtonManager.OnStartGame -= StartGame;
+        Player.GameOver -= GameOver;
+    }
+
+    private void StartGame()
     {
         StartCoroutine(SpawnWave());
     }
@@ -50,6 +62,14 @@ public class Waves : MonoBehaviour
             startEnemyAmount += Random.Range(minEnemyIncrease, maxEnemyIncrease);
             HighScore.Instance.WavesSurvived++;
             StartCoroutine(SpawnWave());
+        }
+    }
+
+    private void GameOver()
+    {
+        foreach(GameObject enemy in aliveEnemies)
+        {
+            Destroy(enemy);
         }
     }
 }

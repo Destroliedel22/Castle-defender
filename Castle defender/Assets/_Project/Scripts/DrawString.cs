@@ -54,7 +54,12 @@ public class DrawString : MonoBehaviour
             animator.Play("Wooden Bow", 0, normalizedDraw);
         }
         else
+        {
             rb.MovePosition(startPos);
+
+            normalizedDraw -= 0.1f;
+            animator.Play("Wooden Bow", 0, normalizedDraw);
+        }
 
         rb.MoveRotation(stringRestPoint.rotation);
     }

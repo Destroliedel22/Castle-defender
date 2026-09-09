@@ -1,14 +1,23 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-[System.Serializable]
-public class LeaderboardEntry
+public class Leaderboard : MonoBehaviour
 {
-    public int WavesSurvived;
-    public int EnemiesKilled;
-}
+    private List<LeaderboardEntry> stats = new List<LeaderboardEntry>();
 
-[System.Serializable]
-public class LeaderboardData
-{
-    public List<LeaderboardEntry> Entries;
+    private void Start()
+    {
+        stats = LbBehaviour.Instance.LbData.Entries;
+        ShowLeaderboard();
+    }
+
+    private void ShowLeaderboard()
+    {
+        for (int i = 0; i < stats.Count; i++)
+        {
+            //print(stats[i].WavesSurvived);
+            //print(stats[i].EnemiesKilled);
+            //print("_");
+        }
+    }
 }

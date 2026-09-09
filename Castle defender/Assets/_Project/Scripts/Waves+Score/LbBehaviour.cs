@@ -28,7 +28,6 @@ public class LbBehaviour : MonoBehaviour
             Destroy(gameObject);
 
         savePath = Path.Combine(Application.persistentDataPath, "leaderboard.json");
-        print(savePath);
 
         Load();
     }

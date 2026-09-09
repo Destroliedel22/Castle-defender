@@ -55,61 +55,26 @@ public class Enemy : MonoBehaviour
         switch (enemyState)
         {
             case EnemyState.Walking:
-                Walk();
-                if (Vector3.Distance(transform.position, Target.position) < 1f)
-                {
-                    if (!hasClimbed)
-                    {
-                        animator.SetBool(WALKING_STATE, false);
-                        if (walkToClimbDelay > 0f)
-                            walkToClimbDelay -= Time.deltaTime;
-                        else
-                            enemyState = EnemyState.Climbing;
-                    }
-                    else
-                        enemyState = EnemyState.Attacking;
-                }
+                HandleWalkState();
                 break;
 
             case EnemyState.Climbing:
-                if (!isClimbing && !hasClimbed)
-                    climbRoutine = StartCoroutine(EnemyClimb());
-
-                if (Vector3.Distance(transform.position, Target.position) < 1f)
-                {
-                    if (isClimbing)
-                    {
-                        animator.SetBool(CLIMBING_STATE, false);
-                        isClimbing = false;
-                        hasClimbed = true;
-
-                        foreach (Rigidbody rb in rigidbodies)
-                            rb.useGravity = true;
-                    }
-
-                    if (climbToWalkDelay > 0f)
-                        climbToWalkDelay -= Time.deltaTime;
-                    else
-                    {
-                        Target = Camera.main.transform.root;
-                        enemyState = EnemyState.Walking;
-                    }
-                }
+                HandleClimbState();
                 break;
 
             case EnemyState.Attacking:
-                animator.SetBool(WALKING_STATE, false);
-                Attack();
-                if (Vector3.Distance(transform.position, Target.position) > 1f)
-                {
-                    enemyState = EnemyState.Walking;
-                }
+                HandleAttackState();
                     break;
 
         }
     }
 
-    private void Walk()
+    private bool ArrivedAtTarget()
+    {
+        return Vector3.Distance(transform.position, Target.position) < 1f;
+    }
+
+    private void HandleWalkState()
     {
         animator.SetBool(WALKING_STATE, true);
         Vector3 pos = Vector3.MoveTowards(transform.position, Target.transform.position, walkSpeed * Time.deltaTime);
@@ -117,10 +82,53 @@ public class Enemy : MonoBehaviour
             pos.y = Terrain.activeTerrain.SampleHeight(pos);
         transform.position = pos;
         transform.LookAt(Target);
+
+        if (ArrivedAtTarget())
+        {
+            if (!hasClimbed)
+            {
+                animator.SetBool(WALKING_STATE, false);
+                if (walkToClimbDelay > 0f)
+                    walkToClimbDelay -= Time.deltaTime;
+                else
+                    enemyState = EnemyState.Climbing;
+            }
+            else
+                enemyState = EnemyState.Attacking;
+        }
     }
 
-    private void Attack()
+    private void HandleClimbState()
     {
+        if (!isClimbing && !hasClimbed)
+            climbRoutine = StartCoroutine(EnemyClimb());
+
+        if (ArrivedAtTarget())
+        {
+            if (isClimbing)
+            {
+                animator.SetBool(CLIMBING_STATE, false);
+                isClimbing = false;
+                hasClimbed = true;
+
+                foreach (Rigidbody rb in rigidbodies)
+                    rb.useGravity = true;
+            }
+
+            if (climbToWalkDelay > 0f)
+                climbToWalkDelay -= Time.deltaTime;
+            else
+            {
+                Target = Camera.main.transform.root;
+                enemyState = EnemyState.Walking;
+            }
+        }
+    }
+
+    private void HandleAttackState()
+    {
+        animator.SetBool(WALKING_STATE, false);
+
         if (attackTimer > 0f)
             attackTimer -= Time.deltaTime;
         else
@@ -128,6 +136,11 @@ public class Enemy : MonoBehaviour
             attackTimer = Random.Range(minAttackTimer, maxAttackTimer);
             animator.SetTrigger(ATTACKING_STATE);
             Target.GetComponent<Player>().Health -= dmg;
+        }
+
+        if (!ArrivedAtTarget())
+        {
+            enemyState = EnemyState.Walking;
         }
     }
 

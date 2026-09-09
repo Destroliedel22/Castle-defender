@@ -909,7 +909,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.0002
+  m_Radius: 0.0004
   m_Height: 0.067
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
@@ -1021,9 +1021,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3978164516867437385}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1448,6 +1448,7 @@ GameObject:
   - component: {fileID: 3185283849024614610}
   - component: {fileID: 5367117081191299907}
   - component: {fileID: 905509677724797452}
+  - component: {fileID: 3694660663970237391}
   m_Layer: 11
   m_Name: WB.main
   m_TagString: Untagged
@@ -1584,7 +1585,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_StartingHoverFilters: []
-  m_StartingSelectFilters: []
+  m_StartingSelectFilters:
+  - {fileID: 3694660663970237391}
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
@@ -1644,6 +1646,18 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &3694660663970237391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5957796081577408985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e34e4636193d854694e80ed58b43e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BowGrabManager
 --- !u!1 &6187064893962123144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,7 +2088,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.0002
+  m_Radius: 0.0004
   m_Height: 0.067
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}

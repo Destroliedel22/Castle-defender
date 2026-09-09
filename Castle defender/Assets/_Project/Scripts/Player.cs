@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     private Material fadeOutMat;
     private Color color;
 
+    private bool gameOverEventCalled;
+
     private void Awake()
     {
         Health = Settings.Health;
@@ -28,8 +30,9 @@ public class Player : MonoBehaviour
                 color.a += 0.01f;
                 fadeOutMat.color = color;
             }
-            else
+            else if(!gameOverEventCalled)
             {
+                gameOverEventCalled = true;
                 GameOver?.Invoke();
             }
         }

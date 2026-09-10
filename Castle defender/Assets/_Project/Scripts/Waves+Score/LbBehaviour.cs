@@ -52,9 +52,10 @@ public class LbBehaviour : MonoBehaviour
         }
     }
 
-    public void AddEntry(int wavesSurvived, int enemiesKilled)
+    public void AddEntry(string name, int wavesSurvived, int enemiesKilled)
     {
         LeaderboardEntry entry = new LeaderboardEntry();
+        entry.Name = name;
         entry.WavesSurvived = wavesSurvived;
         entry.EnemiesKilled = enemiesKilled;
 
@@ -76,6 +77,7 @@ public class LbBehaviour : MonoBehaviour
 
     private void GameOver()
     {
-        AddEntry(HighScore.Instance.WavesSurvived, HighScore.Instance.EnemiesKilled);
+        HighScore highScore = HighScore.Instance;
+        AddEntry(highScore.Name, highScore.WavesSurvived, highScore.EnemiesKilled);
     }
 }

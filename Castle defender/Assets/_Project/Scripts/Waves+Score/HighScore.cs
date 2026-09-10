@@ -5,6 +5,7 @@ public class HighScore : MonoBehaviour
 {
     public static HighScore Instance { get; private set; }
 
+    public string Name;
     public int WavesSurvived;
     public int EnemiesKilled;
 

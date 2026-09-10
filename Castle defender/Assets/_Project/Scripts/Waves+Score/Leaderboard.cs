@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
 {
+    [SerializeField] private Transform rowParent;
+    [SerializeField] private GameObject rowPrefab;
+
     private List<LeaderboardEntry> stats = new List<LeaderboardEntry>();
 
     private void Start()
@@ -15,9 +18,9 @@ public class Leaderboard : MonoBehaviour
     {
         for (int i = 0; i < stats.Count; i++)
         {
-            //print(stats[i].WavesSurvived);
-            //print(stats[i].EnemiesKilled);
-            //print("_");
+            GameObject clone = Instantiate(rowPrefab, rowParent);
+            LeaderboardRow row = clone.GetComponent<LeaderboardRow>();
+            row.ChangeText(i + 1, stats[i].Name, stats[i].WavesSurvived, stats[i].EnemiesKilled);
         }
     }
 }

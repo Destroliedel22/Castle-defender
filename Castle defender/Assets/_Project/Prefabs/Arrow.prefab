@@ -58,7 +58,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.006
+  m_Radius: 0.011
   m_Height: 0.7037448
   m_Direction: 1
   m_Center: {x: -0.0010000002, y: 0.2551668, z: -0.0010000002}
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 8
   m_TightenRotation: 0.1
-  m_TrackScale: 1
+  m_TrackScale: 0
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
@@ -259,6 +259,7 @@ MonoBehaviour:
   HasHit: 0
   tipCollider: {fileID: 5498689941365892902}
   trailRenderer: {fileID: 1198383387855444153}
+  killVelocity: 2
 --- !u!65 &5498689941365892902
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -278,8 +279,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.027692616, y: 0.094356984, z: 0.0124197835}
-  m_Center: {x: -0.0011913478, y: 0.64969814, z: -0.0015787018}
+  m_Size: {x: 0.047346503, y: 0.094356984, z: 0.015069897}
+  m_Center: {x: 0, y: 0.64969814, z: 0}
 --- !u!1 &6645496188068771190
 GameObject:
   m_ObjectHideFlags: 0

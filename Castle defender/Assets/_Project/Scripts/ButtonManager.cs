@@ -21,7 +21,7 @@ public class ButtonManager : MonoBehaviour
 
     public void StartGame()
     {
-        if(HighScore.Instance.Name != null)
+        if(HighScore.Instance.Name != "")
         {
             OnStartGame?.Invoke();
             StartButton.SetActive(false);

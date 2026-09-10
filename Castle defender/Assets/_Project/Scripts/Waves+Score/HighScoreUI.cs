@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -32,11 +33,21 @@ public class HighScoreUI : MonoBehaviour
 
     public void SetName()
     {
-        if(inputField.text != "")
+        if (inputField.text != "" && inputField.text.Length <= 10)
         {
             HighScore.Instance.Name = inputField.text;
             keyboard.SetActive(false);
         }
+        else
+            StartCoroutine(WarningText("Must contain 1-10 characters"));
 
+    }
+
+    IEnumerator WarningText(string warning)
+    {
+        string input = inputField.text;
+        inputField.text = warning;
+        yield return new WaitForSeconds(1f);
+        inputField.text = input;
     }
 }

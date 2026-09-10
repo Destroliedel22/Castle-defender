@@ -12,11 +12,12 @@ public class Arrow : MonoBehaviour
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private float killVelocity = 2;
 
+    private Vector3 previousPosition;
+    private float calculatedVelocity;
+
     private GameObject hitObject;
     private Rigidbody rb;
     private XRGrabInteractable grabbable;
-
-    private float lastVelocity;
 
     private void Awake()
     {
@@ -32,10 +33,9 @@ public class Arrow : MonoBehaviour
             OnHit(collision);
     }
 
-
     public void OnHit(Collision collision)
     {
-        if (!HasHit && lastVelocity > killVelocity)
+        if (!HasHit && calculatedVelocity > killVelocity)
         {
             HasHit = true;
             hitObject = collision.gameObject;
@@ -70,8 +70,10 @@ public class Arrow : MonoBehaviour
             if (trailRenderer.enabled == false)
                 trailRenderer.enabled = true;
         }
-        if (!HasHit)
-            lastVelocity = rb.linearVelocity.magnitude;
+
+        Vector3 currentPosition = transform.position;
+        calculatedVelocity = (currentPosition - previousPosition).magnitude / Time.deltaTime;
+        previousPosition = currentPosition;
     }
 
     public void SwitchSettings()
@@ -99,6 +101,8 @@ public class Arrow : MonoBehaviour
 
     private void Stuck()
     {
+        if(grabbable.isSelected)
+            grabbable.interactionManager.SelectExit(grabbable.interactorsSelecting[0], grabbable);
         transform.parent = hitObject.transform;
         rb.isKinematic = true;
         IsShot = false;

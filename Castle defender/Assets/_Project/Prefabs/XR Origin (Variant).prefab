@@ -7201,7 +7201,7 @@ MonoBehaviour:
     m_ManualQueueWasCompletedThisFrame: 0
     m_ManualQueueValue: 0
     m_ManualQueueTargetFrame: 0
-  m_SelectActionTrigger: 1
+  m_SelectActionTrigger: 2
   m_AllowHoveredActivate: 0
   m_TargetPriorityMode: 0
   m_HideControllerOnSelect: 0
@@ -9127,7 +9127,7 @@ MonoBehaviour:
     m_ManualQueueWasCompletedThisFrame: 0
     m_ManualQueueValue: 0
     m_ManualQueueTargetFrame: 0
-  m_SelectActionTrigger: 1
+  m_SelectActionTrigger: 2
   m_AllowHoveredActivate: 0
   m_TargetPriorityMode: 0
   m_HideControllerOnSelect: 0
@@ -11196,7 +11196,6 @@ MonoBehaviour:
   arrowTransform: {fileID: 7819160872413839141}
   arrowPrefab: {fileID: 3183688558640414425, guid: 9caa77408d0e4c74e8336803b16ccfe5, type: 3}
   rotateSpeed: 3
-  rotateDegree: 30
   offset: {x: -0.25, y: -0.4, z: 0}
 --- !u!1 &8223556645125149473
 GameObject:
@@ -11590,7 +11589,6 @@ MonoBehaviour:
   arrowTransform: {fileID: 4139626324060066838}
   arrowPrefab: {fileID: 3183688558640414425, guid: 9caa77408d0e4c74e8336803b16ccfe5, type: 3}
   rotateSpeed: 3
-  rotateDegree: 30
   offset: {x: 0.25, y: -0.4, z: 0}
 --- !u!1 &8477340548138867107
 GameObject:

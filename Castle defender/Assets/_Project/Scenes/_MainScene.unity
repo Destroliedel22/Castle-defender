@@ -1518,7 +1518,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1729474388}
+  m_Camera: {fileID: 3284131260072969869}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2065,7 +2065,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1729474388}
+  m_Camera: {fileID: 3284131260072969869}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2271,7 +2271,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1729474388}
+  m_Camera: {fileID: 3284131260072969869}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2568,11 +2568,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 835e9fc3e9925164ea97c026e12b521b, type: 3}
---- !u!20 &1729474388 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 3284131260727978462, guid: 835e9fc3e9925164ea97c026e12b521b, type: 3}
-  m_PrefabInstance: {fileID: 1729474387}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1765785224
 GameObject:
   m_ObjectHideFlags: 0
@@ -11525,6 +11520,11 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!20 &3284131260072969869 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3284131260727978462, guid: 835e9fc3e9925164ea97c026e12b521b, type: 3}
+  m_PrefabInstance: {fileID: 1729474387}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3359798969068679446
 GameObject:
   m_ObjectHideFlags: 0

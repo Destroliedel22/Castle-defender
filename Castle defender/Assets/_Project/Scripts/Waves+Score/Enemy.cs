@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public enum EnemyState
 {
@@ -81,7 +82,10 @@ public class Enemy : MonoBehaviour
         if (!hasClimbed)
             pos.y = Terrain.activeTerrain.SampleHeight(pos);
         transform.position = pos;
-        transform.LookAt(Target);
+
+        Vector3 direction = Target.position - transform.position;
+        direction.y = 0; 
+        transform.rotation = Quaternion.LookRotation(direction);
 
         if (ArrivedAtTarget())
         {

@@ -81,6 +81,9 @@ public class Enemy : MonoBehaviour
         Vector3 pos = Vector3.MoveTowards(transform.position, Target.transform.position, walkSpeed * Time.deltaTime);
         if (!hasClimbed)
             pos.y = Terrain.activeTerrain.SampleHeight(pos);
+        else
+            pos.y = transform.position.y;
+
         transform.position = pos;
 
         Vector3 direction = Target.position - transform.position;

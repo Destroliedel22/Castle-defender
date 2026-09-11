@@ -35,6 +35,7 @@ public class ButtonManager : MonoBehaviour
 
     public void QuitGame()
     {
+        LbBehaviour.Instance.AddEntry(HighScore.Instance.name, HighScore.Instance.WavesSurvived, HighScore.Instance.EnemiesKilled);
         Application.Quit();
     }
 

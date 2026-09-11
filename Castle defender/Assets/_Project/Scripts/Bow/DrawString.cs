@@ -5,6 +5,8 @@ public class DrawString : MonoBehaviour
 {
     [HideInInspector] public float DrawDistance;
 
+    [SerializeField] private LineRenderer trajectoryLine;
+
     [SerializeField] private PlayerSettings settings;
     [SerializeField] private Transform stringRestPoint;
     [SerializeField] private LoadArrow loadArrow;
@@ -52,6 +54,15 @@ public class DrawString : MonoBehaviour
             //Gets a value between 0 and 1 to play the animation
             normalizedDraw = Mathf.InverseLerp(settings.MinDrawDistance, settings.MaxDrawDistance, clampDistance);
             animator.Play("Wooden Bow", 0, normalizedDraw);
+
+            if (loadArrow.ArrowObject)
+            {
+                //Trajectory
+                Vector3 trajectoryStartPos = loadArrow.ArrowObject.transform.position;
+                Vector3[] points = CalculateTrajectoryPoint(trajectoryStartPos, ArrowSpeed());
+                trajectoryLine.positionCount = points.Length;
+                trajectoryLine.SetPositions(points);
+            }
         }
         else
         {
@@ -59,6 +70,8 @@ public class DrawString : MonoBehaviour
 
             normalizedDraw -= 0.1f;
             animator.Play("Wooden Bow", 0, normalizedDraw);
+
+            trajectoryLine.positionCount = 0;
         }
 
         rb.MoveRotation(stringRestPoint.rotation);
@@ -82,12 +95,34 @@ public class DrawString : MonoBehaviour
             loadArrow.Shoot();
             Rigidbody rb = loadArrow.ArrowObject.GetComponent<Rigidbody>();
 
-            //Calculates how far the string is drawn for more force on the arrow
-            float releaseSpeed = Mathf.Lerp(settings.MinArrowSpeed, settings.MaxArrowSpeed, clampDistance / settings.MaxDrawDistance);
-            rb.AddForce(drawAxis * -releaseSpeed, ForceMode.VelocityChange);
+            rb.AddForce(ArrowSpeed(), ForceMode.VelocityChange);
 
             loadArrow.ArrowObject = null;
             loadArrow.ArrowLoaded = false;
         }
+    }
+
+    private Vector3 ArrowSpeed()
+    {
+        //Calculates how far the string is drawn for more force on the arrow
+        float arrowSpeed = Mathf.Lerp(settings.MinArrowSpeed, settings.MaxArrowSpeed, clampDistance / settings.MaxDrawDistance);
+        return drawAxis * -arrowSpeed;
+    }
+
+    private Vector3[] CalculateTrajectoryPoint(Vector3 startPos, Vector3 startVelocity)
+    {
+        int steps = 30;
+        float duration = 2f;
+        Vector3[] points = new Vector3[steps];
+
+        for (int i = 0; i < steps; i++)
+        {
+            float t = (i / (float)(steps - 1)) * duration;
+
+            Vector3 point = startPos + startVelocity * t + 0.5f * Physics.gravity * t * t;
+            points[i] = point;
+        }
+
+        return points;
     }
 }

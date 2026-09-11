@@ -224,7 +224,7 @@ MonoBehaviour:
   - {fileID: 7449501320696012571}
   - {fileID: 5438849488722131448}
   - {fileID: 6096907116067316970}
-  startEnemyAmount: 3
+  startEnemyAmount: 5
   minEnemyIncrease: 1
   maxEnemyIncrease: 3
   secondsBetweenSpawns: 0.5

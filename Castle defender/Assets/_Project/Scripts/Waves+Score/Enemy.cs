@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public enum EnemyState
 {
@@ -28,10 +27,10 @@ public class Enemy : MonoBehaviour
     protected Animator animator;
     protected float attackTimer;
 
-    private EnemyState enemyState;
-    private const string WALKING_STATE = "Walking";
-    private const string CLIMBING_STATE = "Climbing";
-    private const string ATTACKING_STATE = "Attack";
+    protected EnemyState enemyState;
+    protected const string WALKING_STATE = "Walking";
+    protected const string CLIMBING_STATE = "Climbing";
+    protected const string ATTACKING_STATE = "Attack";
 
     private Rigidbody[] rigidbodies;
 
@@ -49,9 +48,12 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         attackTimer = Random.Range(minAttackTimer, maxAttackTimer);
+
+        foreach (Rigidbody rb in rigidbodies)
+            rb.isKinematic = true;
     }
 
-    private void Update()
+    protected void Update()
     {
         switch (enemyState)
         {
@@ -66,16 +68,15 @@ public class Enemy : MonoBehaviour
             case EnemyState.Attacking:
                 HandleAttackState();
                 break;
-
         }
     }
 
-    private bool ArrivedAtTarget()
+    protected bool ArrivedAtTarget()
     {
         return Vector3.Distance(transform.position, Target.position) < 1f;
     }
 
-    private void HandleWalkState()
+    protected virtual void HandleWalkState()
     {
         animator.SetBool(WALKING_STATE, true);
         Vector3 pos = Vector3.MoveTowards(transform.position, Target.transform.position, walkSpeed * Time.deltaTime);
@@ -105,7 +106,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void HandleClimbState()
+    protected void HandleClimbState()
     {
         if (!isClimbing && !hasClimbed)
             climbRoutine = StartCoroutine(EnemyClimb());
@@ -132,7 +133,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void HandleAttackState()
+    protected void HandleAttackState()
     {
         animator.SetBool(WALKING_STATE, false);
 
@@ -151,7 +152,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator EnemyClimb()
+    protected IEnumerator EnemyClimb()
     {
         isClimbing = true;
 
@@ -206,7 +207,10 @@ public class Enemy : MonoBehaviour
 
         OnDeath?.Invoke(this);
         foreach (Rigidbody rb in rigidbodies)
+        {
             rb.useGravity = true;
+            rb.isKinematic = false;
+        }
         animator.enabled = false;
         Destroy(this.gameObject, 2);
     }

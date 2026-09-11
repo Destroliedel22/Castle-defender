@@ -309,6 +309,97 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &270670757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1608989931998732518, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0351032
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608989931998732518, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000006842039
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608989931998732518, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -54.919575
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608989931998732518, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608989931998732518, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608989931998732518, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608989931998732518, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608989931998732518, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608989931998732518, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608989931998732518, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177658716006458656, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219587149051898319, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      propertyPath: m_Name
+      value: Orc Warrior with Sword and Shield
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2177658716006458656, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 270670759}
+  m_SourcePrefab: {fileID: 100100000, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+--- !u!1 &270670758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2177658716006458656, guid: 3778445b9b51c38429ce16598734d0e3, type: 3}
+  m_PrefabInstance: {fileID: 270670757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &270670759
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270670758}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 06c14806ecced486896bb42af9e779e2, type: 3}
 --- !u!1 &345960654
 GameObject:
   m_ObjectHideFlags: 0
@@ -7985,7 +8076,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 5142732500191119963}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -9011,7 +9102,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 5142732501470415748}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -18144,7 +18235,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 3219720447021979747}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -28745,3 +28836,4 @@ SceneRoots:
   - {fileID: 1451119681}
   - {fileID: 1369879037}
   - {fileID: 1693450228}
+  - {fileID: 270670757}

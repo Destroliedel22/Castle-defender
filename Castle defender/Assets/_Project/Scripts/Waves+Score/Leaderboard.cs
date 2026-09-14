@@ -8,10 +8,13 @@ public class Leaderboard : MonoBehaviour
 
     private List<LeaderboardEntry> stats = new List<LeaderboardEntry>();
 
-    private void Start()
+    private void Update()
     {
-        stats = LbBehaviour.Instance.LbData.Entries;
-        ShowLeaderboard();
+        if (stats.Count == 0)
+        {
+            stats = LbBehaviour.Instance.LbData.Entries;
+            ShowLeaderboard();
+        }
     }
 
     private void ShowLeaderboard()

@@ -1346,9 +1346,9 @@ MonoBehaviour:
   walkToClimbDelay: 1
   climbToWalkDelay: 3
   blockRollTime: 3
-  blockChance: 50
-  minBlockTime: 10
-  maxBlockTime: 10
+  blockChance: 20
+  minBlockTime: 2
+  maxBlockTime: 4
 --- !u!1 &5250986641823363141
 GameObject:
   m_ObjectHideFlags: 0

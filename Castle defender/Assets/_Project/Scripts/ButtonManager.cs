@@ -6,6 +6,8 @@ public class ButtonManager : MonoBehaviour
 {
     public static event System.Action OnStartGame;
 
+    private bool gameStarted;
+
     [SerializeField] private GameObject StartButton;
     [SerializeField] private GameObject RestartButton;
     [SerializeField] private GameObject QuitButton;
@@ -24,6 +26,7 @@ public class ButtonManager : MonoBehaviour
     {
         if(HighScore.Instance.Name != "")
         {
+            gameStarted = true;
             OnStartGame?.Invoke();
             StartButton.SetActive(false);
         }
@@ -34,9 +37,16 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void QuitPressed()
+    {
+        QuitGame();
+    }
+
     public async Task QuitGame()
     {
-        await LbBehaviour.Instance.AddEntry(HighScore.Instance.name, HighScore.Instance.WavesSurvived, HighScore.Instance.EnemiesKilled);
+        if(gameStarted)
+            await LbBehaviour.Instance.AddEntry(HighScore.Instance.name, HighScore.Instance.WavesSurvived, HighScore.Instance.EnemiesKilled);
+
         Application.Quit();
     }
 

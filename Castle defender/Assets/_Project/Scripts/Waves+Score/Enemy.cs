@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum EnemyState
 {
@@ -15,26 +16,29 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector] public Transform Target;
 
-    [SerializeField] protected int dmg;
+    [SerializeField] private int dmg;
 
-    [SerializeField] protected float walkSpeed = 1;
-    [SerializeField] protected float climbTime = 5;
-    [SerializeField] protected float minAttackTimer = 1;
-    [SerializeField] protected float maxAttackTimer = 5;
+    [SerializeField] private float walkSpeed = 1;
+    [SerializeField] private float climbTime = 5;
+    [SerializeField] private float minAttackTimer = 1;
+    [SerializeField] private float maxAttackTimer = 5;
 
     [SerializeField] private float walkToClimbDelay = 1;
     [SerializeField] private float climbToWalkDelay = 2;
 
     protected Animator animator;
-    protected float attackTimer;
 
-    protected EnemyState enemyState;
     protected const string WALKING_STATE = "Walking";
-    protected const string CLIMBING_STATE = "Climbing";
-    protected const string ATTACKING_STATE = "Attack";
+
+    private EnemyState enemyState;
+    private const string CLIMBING_STATE = "Climbing";
+    private const string ATTACKING_STATE = "Attack";
 
     private Rigidbody[] rigidbodies;
 
+    private float attackTimer;
+
+    private bool walkedForward;
     private bool hasClimbed;
     private bool isClimbing;
 
@@ -89,7 +93,7 @@ public class Enemy : MonoBehaviour
         transform.position = pos;
 
         Vector3 direction = Target.position - transform.position;
-        direction.y = 0; 
+        direction.y = 0;
         transform.rotation = Quaternion.LookRotation(direction);
 
         if (ArrivedAtTarget())
@@ -101,6 +105,11 @@ public class Enemy : MonoBehaviour
                     walkToClimbDelay -= Time.deltaTime;
                 else
                     enemyState = EnemyState.Climbing;
+            }
+            else if (!walkedForward)
+            {
+                Target = Camera.main.transform.root;
+                walkedForward = true;
             }
             else
                 enemyState = EnemyState.Attacking;
@@ -128,7 +137,7 @@ public class Enemy : MonoBehaviour
                 climbToWalkDelay -= Time.deltaTime;
             else
             {
-                Target = Camera.main.transform.root;
+                Target = Target.GetChild(0);
                 enemyState = EnemyState.Walking;
             }
         }

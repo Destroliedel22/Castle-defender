@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public enum EnemyState
@@ -45,7 +46,7 @@ public class Enemy : MonoBehaviour
         rigidbodies = GetComponentsInChildren<Rigidbody>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         attackTimer = Random.Range(minAttackTimer, maxAttackTimer);
 

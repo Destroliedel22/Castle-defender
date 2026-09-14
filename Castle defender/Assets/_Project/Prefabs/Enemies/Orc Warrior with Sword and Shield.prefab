@@ -460,7 +460,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1278,7 +1278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1608989931998732518}
   - component: {fileID: 5348724575883134192}
-  - component: {fileID: 5962088303602554459}
+  - component: {fileID: 5462007684084263328}
   m_Layer: 6
   m_Name: Orc Warrior with Sword and Shield
   m_TagString: Enemy
@@ -1325,7 +1325,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5962088303602554459
+--- !u!114 &5462007684084263328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1334,9 +1334,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5219587149051898319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82c65c852e79c1b4c9984f96cfdc059c, type: 3}
+  m_Script: {fileID: 11500000, guid: 55fc53e4a34af314686ddbb272eafd98, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  m_EditorClassIdentifier: Assembly-CSharp::ShieldEnemy
   Target: {fileID: 0}
   dmg: 25
   walkSpeed: 1
@@ -1345,6 +1345,10 @@ MonoBehaviour:
   maxAttackTimer: 5
   walkToClimbDelay: 1
   climbToWalkDelay: 3
+  blockRollTime: 3
+  blockChance: 10
+  minBlockTime: 2
+  maxBlockTime: 4
 --- !u!1 &5250986641823363141
 GameObject:
   m_ObjectHideFlags: 0

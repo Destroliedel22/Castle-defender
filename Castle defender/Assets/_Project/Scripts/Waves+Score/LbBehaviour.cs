@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
@@ -11,8 +10,6 @@ public class LbBehaviour : MonoBehaviour
     public static LbBehaviour Instance;
 
     public LeaderboardData LbData;
-
-    private string savePath;
 
     private void OnEnable()
     {
@@ -33,8 +30,6 @@ public class LbBehaviour : MonoBehaviour
         }
         else if (Instance != this)
             Destroy(gameObject);
-
-        savePath = Path.Combine(Application.persistentDataPath, "leaderboard.json");
     }
 
     private async void Start()

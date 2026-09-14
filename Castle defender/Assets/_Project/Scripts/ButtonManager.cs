@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,9 +34,9 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void QuitGame()
+    public async Task QuitGame()
     {
-        LbBehaviour.Instance.AddEntry(HighScore.Instance.name, HighScore.Instance.WavesSurvived, HighScore.Instance.EnemiesKilled);
+        await LbBehaviour.Instance.AddEntry(HighScore.Instance.name, HighScore.Instance.WavesSurvived, HighScore.Instance.EnemiesKilled);
         Application.Quit();
     }
 

@@ -1,5 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
+using Unity.Services.CloudSave;
 using UnityEngine;
 
 public class LbBehaviour : MonoBehaviour
@@ -28,23 +32,35 @@ public class LbBehaviour : MonoBehaviour
             Destroy(gameObject);
 
         savePath = Path.Combine(Application.persistentDataPath, "leaderboard.json");
-
-        Load();
     }
 
-    public void Save()
+    private async void Start()
     {
-        string json = JsonUtility.ToJson(LbData);
-        File.WriteAllText(savePath, json);
+        await InitializeServices();
+        await LoadFromCloud();
     }
 
-    public void Load()
+    private async Task InitializeServices()
     {
-        if (File.Exists(savePath))
-        {
-            string json = File.ReadAllText(savePath);
-            LbData = JsonUtility.FromJson<LeaderboardData>(json);
-        }
+        await UnityServices.InitializeAsync();
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+    }
+
+    private async Task SaveToCloud()
+    {
+        Dictionary<string, object> dataToSave = new Dictionary<string, object>();
+        dataToSave.Add("Leaderboard", LbData);
+        await CloudSaveService.Instance.Data.Player.SaveAsync(dataToSave);
+    }
+
+    private async Task LoadFromCloud()
+    {
+        HashSet<string> keys = new HashSet<string>();
+        keys.Add("Leaderboard");
+        var result = await CloudSaveService.Instance.Data.Player.LoadAsync(keys);
+
+        if(result.ContainsKey("Leaderboard"))
+            LbData = result["Leaderboard"].Value.GetAs<LeaderboardData>();
         else
         {
             LbData = new LeaderboardData();
@@ -52,7 +68,7 @@ public class LbBehaviour : MonoBehaviour
         }
     }
 
-    public void AddEntry(string name, int wavesSurvived, int enemiesKilled)
+    public async Task AddEntry(string name, int wavesSurvived, int enemiesKilled)
     {
         LeaderboardEntry entry = new LeaderboardEntry();
         entry.Name = name;
@@ -72,7 +88,7 @@ public class LbBehaviour : MonoBehaviour
         if (LbData.Entries.Count > 10)
             LbData.Entries.RemoveRange(10, LbData.Entries.Count - 10);
 
-        Save();
+        await SaveToCloud();
     }
 
     private void GameOver()

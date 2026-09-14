@@ -48,14 +48,7 @@ public class Arrow : MonoBehaviour
 
                 case ("Default"):
                     if (IsShot)
-                    {
-                        GroundHit();
                         Stuck();
-                    }
-                    break;
-
-                case ("Ricochet"):
-                    Ricochet();
                     break;
             }
         }
@@ -87,16 +80,6 @@ public class Arrow : MonoBehaviour
     {
         print("Enemy hit");
         hitObject.GetComponentInParent<Enemy>().Death();
-    }
-
-    private void GroundHit()
-    {
-        print("Ground hit");
-    }
-
-    private void Ricochet()
-    {
-        print("Ricochet");
     }
 
     private void Stuck()

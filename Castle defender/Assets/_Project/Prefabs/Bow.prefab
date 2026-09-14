@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 3311446840150451489}
   - component: {fileID: 5107852585520999179}
   - component: {fileID: 7256670843449926848}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ArrowPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3816483408552777183}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: WB.string_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -899,7 +899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2797349513863547087}
   - component: {fileID: 7876878196288873975}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Lower_String
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1019,7 +1019,7 @@ GameObject:
   - component: {fileID: 6827783198704786681}
   - component: {fileID: 441516122559345192}
   - component: {fileID: 7195040323977702953}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: String
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1701,7 +1701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5976744473162314996}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2081,7 +2081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4352185545246532943}
   - component: {fileID: 745269569082801726}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Upper_String
   m_TagString: Untagged
   m_Icon: {fileID: 0}

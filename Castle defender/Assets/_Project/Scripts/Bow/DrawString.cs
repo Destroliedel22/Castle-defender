@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class DrawString : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class DrawString : MonoBehaviour
 
     private Rigidbody rb;
     private Animator animator;
+    private XRGrabInteractable grabbable;
 
     private Transform grabbedHand;
     private Vector3 startPos;
@@ -25,6 +28,8 @@ public class DrawString : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInParent<Animator>();
         animator.speed = 0;
+
+        grabbable = GetComponent<XRGrabInteractable>();
     }
 
     private void Update()
@@ -124,5 +129,12 @@ public class DrawString : MonoBehaviour
         }
 
         return points;
+    }
+
+    public void OnHover(HoverEnterEventArgs args)
+    {
+        IXRSelectInteractor hand = args.interactorObject as IXRSelectInteractor;
+        if (hand != null && hand.isSelectActive)
+            grabbable.interactionManager.SelectEnter(hand, grabbable);
     }
 }

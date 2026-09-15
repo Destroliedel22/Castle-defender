@@ -90,6 +90,7 @@ public class DrawString : MonoBehaviour
 
     public void OnLetGo(SelectExitEventArgs args)
     {
+        grabbedHand.parent.GetComponentInChildren<SpawnArrow>().Spawn();
         grabbedHand = null;
         ShootArrow();
     }

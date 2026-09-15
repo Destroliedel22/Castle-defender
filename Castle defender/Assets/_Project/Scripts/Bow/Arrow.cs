@@ -1,7 +1,4 @@
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class Arrow : MonoBehaviour
 {
@@ -44,9 +41,8 @@ public class Arrow : MonoBehaviour
                     Stuck();
                     break;
 
-                case ("Default"):
-                    if (IsShot)
-                        Stuck();
+                default:
+                    Stuck();
                     break;
             }
         }

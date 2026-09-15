@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class DrawString : MonoBehaviour
 {
@@ -54,7 +53,7 @@ public class DrawString : MonoBehaviour
 
             //Calculates and sets the position of the string on the given axis according to where the hand is.
             Vector3 pos = startPos + drawAxis * clampDistance;
-            rb.MovePosition(pos);
+            transform.position = pos;
 
             //Gets a value between 0 and 1 to play the animation
             normalizedDraw = Mathf.InverseLerp(settings.MinDrawDistance, settings.MaxDrawDistance, clampDistance);
@@ -71,7 +70,7 @@ public class DrawString : MonoBehaviour
         }
         else
         {
-            rb.MovePosition(startPos);
+            transform.position = startPos;
 
             normalizedDraw -= 0.1f;
             animator.Play("Wooden Bow", 0, normalizedDraw);
@@ -85,6 +84,8 @@ public class DrawString : MonoBehaviour
     public void OnGrab(SelectEnterEventArgs args)
     {
         grabbedHand = args.interactorObject.transform;
+        loadArrow.ArrowObject = grabbedHand.parent.GetComponentInChildren<Arrow>().gameObject;
+        loadArrow.Load();
     }
 
     public void OnLetGo(SelectExitEventArgs args)
@@ -131,10 +132,10 @@ public class DrawString : MonoBehaviour
         return points;
     }
 
-    public void OnHover(HoverEnterEventArgs args)
+/*    public void OnHover(HoverEnterEventArgs args)
     {
         IXRSelectInteractor hand = args.interactorObject as IXRSelectInteractor;
         if (hand != null && hand.isSelectActive)
             grabbable.interactionManager.SelectEnter(hand, grabbable);
-    }
+    }*/
 }

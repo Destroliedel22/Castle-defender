@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class LoadArrow : MonoBehaviour
 {
@@ -10,31 +9,14 @@ public class LoadArrow : MonoBehaviour
 
     private Arrow arrowScript;
 
-    private void OnTriggerEnter(Collider other)
+    public void Load()
     {
-        if (!ArrowLoaded && other.CompareTag("ArrowTail"))
-        {
-            XRGrabInteractable grabbable = other.GetComponentInParent<XRGrabInteractable>();
-            if (grabbable != null && grabbable.isSelected)
-            {
-                ArrowLoaded = true;
-                ArrowObject = grabbable.gameObject;
-
-                //Forces the hand to let go of the arrow
-                grabbable.interactionManager.SelectExit(grabbable.interactorsSelecting[0], grabbable);
-
-                Load();
-            }
-        }
-    }
-
-    private void Load()
-    {
+        ArrowLoaded = true;
         arrowScript = ArrowObject.GetComponent<Arrow>();
-        arrowScript.SwitchSettings();
+        ArrowObject.transform.SetParent(null);
         ArrowObject.transform.position = transform.position;
         ArrowObject.transform.rotation = transform.rotation;
-        ArrowObject.transform.parent = transform;
+        ArrowObject.transform.SetParent(transform);
     }
 
     public void Shoot()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BowGrabManager : MonoBehaviour, IXRSelectFilter
 {
-    public bool canProcess => true; // leave this as true, it just tells XRI the filter is active
+    public bool canProcess => true;
 
     public bool Process(IXRSelectInteractor interactor, IXRSelectInteractable interactable)
     {

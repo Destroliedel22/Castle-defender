@@ -17,12 +17,10 @@ public class Arrow : MonoBehaviour
 
     private GameObject hitObject;
     private Rigidbody rb;
-    private XRGrabInteractable grabbable;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        grabbable = GetComponent<XRGrabInteractable>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -73,7 +71,6 @@ public class Arrow : MonoBehaviour
     {
         rb.useGravity = !rb.useGravity;
         rb.isKinematic = !rb.isKinematic;
-        grabbable.enabled = !grabbable.enabled;
     }
 
     private void EnemyHit()
@@ -84,8 +81,6 @@ public class Arrow : MonoBehaviour
 
     private void Stuck()
     {
-        if(grabbable.isSelected)
-            grabbable.interactionManager.SelectExit(grabbable.interactorsSelecting[0], grabbable);
         transform.parent = hitObject.transform;
         rb.isKinematic = true;
         IsShot = false;

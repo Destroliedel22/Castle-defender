@@ -5656,6 +5656,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 630074723232468805, guid: 9caa77408d0e4c74e8336803b16ccfe5, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3183688558640414425, guid: 9caa77408d0e4c74e8336803b16ccfe5, type: 3}
       propertyPath: m_Name
       value: Arrow

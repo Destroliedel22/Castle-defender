@@ -132,11 +132,4 @@ public class DrawString : MonoBehaviour
 
         return points;
     }
-
-/*    public void OnHover(HoverEnterEventArgs args)
-    {
-        IXRSelectInteractor hand = args.interactorObject as IXRSelectInteractor;
-        if (hand != null && hand.isSelectActive)
-            grabbable.interactionManager.SelectEnter(hand, grabbable);
-    }*/
 }

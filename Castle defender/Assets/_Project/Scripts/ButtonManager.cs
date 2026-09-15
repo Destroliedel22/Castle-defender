@@ -11,24 +11,20 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private GameObject StartButton;
     [SerializeField] private GameObject RestartButton;
     [SerializeField] private GameObject QuitButton;
-
-    private void OnEnable()
-    {
-        Player.GameOver += GameOver;
-    }
-
-    private void OnDisable()
-    {
-        Player.GameOver -= GameOver;
-    }
+    [SerializeField] private GameObject AreYouSure;
 
     public void StartGame()
     {
-        if(HighScore.Instance.Name != "")
+        gameStarted = true;
+        StartButton.SetActive(false);
+    }
+
+    public void EnterPressed()
+    {
+        if (HighScore.Instance.Name != "")
         {
-            gameStarted = true;
+            RestartButton.SetActive(true);
             OnStartGame?.Invoke();
-            StartButton.SetActive(false);
         }
     }
 
@@ -39,7 +35,8 @@ public class ButtonManager : MonoBehaviour
 
     public void QuitPressed()
     {
-        QuitGame();
+        AreYouSure.SetActive(true);
+        QuitButton.SetActive(false);
     }
 
     public async Task QuitGame()
@@ -50,9 +47,14 @@ public class ButtonManager : MonoBehaviour
         Application.Quit();
     }
 
-    private void GameOver()
+    public void Yes()
     {
-        RestartButton.SetActive(true);
+        QuitGame();
+    }
+
+    public void No()
+    {
+        AreYouSure.SetActive(false);
         QuitButton.SetActive(true);
     }
 }

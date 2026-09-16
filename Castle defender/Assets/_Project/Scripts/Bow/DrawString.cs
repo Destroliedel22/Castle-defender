@@ -118,7 +118,7 @@ public class DrawString : MonoBehaviour
 
     private Vector3[] CalculateTrajectoryPoint(Vector3 startPos, Vector3 startVelocity)
     {
-        int steps = 50;
+        int steps = 250;
         float duration = 2f;
         Vector3[] points = new Vector3[steps];
 

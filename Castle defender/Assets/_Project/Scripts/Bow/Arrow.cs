@@ -22,6 +22,7 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        print(collision.gameObject.name);
         Collider hitCollider = collision.GetContact(0).thisCollider;
 
         if (hitCollider == tipCollider)

@@ -2,17 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class WaveData
+{
+    public List<GameObject> aliveEnemies = new List<GameObject>();
+}
+
 public class Waves : MonoBehaviour
 {
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
     [SerializeField] private List<GameObject> enemies = new List<GameObject>();
     [SerializeField] private List<Transform> ladders = new List<Transform>();
+
+    [SerializeField] private List<WaveData> waveList = new List<WaveData>();
+
     [SerializeField] private int startEnemyAmount;
     [SerializeField] private int minEnemyIncrease;
     [SerializeField] private int maxEnemyIncrease;
+
     [SerializeField] private float secondsBetweenSpawns;
 
-    private List<GameObject> aliveEnemies = new List<GameObject>();
+    [SerializeField] private float waveSpawnTime;
+
+    private float waveSpawnTimer;
+
+    private bool gameStarted;
+
     private int currentWave = 0;
 
     private void OnEnable()
@@ -27,14 +42,41 @@ public class Waves : MonoBehaviour
         Player.GameOver -= GameOver;
     }
 
+    private void Start()
+    {
+        waveSpawnTimer = waveSpawnTime;
+    }
+
     private void StartGame()
     {
         StartCoroutine(SpawnWave());
+        gameStarted = true;
+    }
+
+    private void Update()
+    {
+        if(gameStarted)
+        {
+            if (waveSpawnTimer > 0f)
+                waveSpawnTimer -= Time.deltaTime;
+            else
+            {
+                if (waveSpawnTime > 30f)
+                    waveSpawnTime -= 2f;
+                else if (waveSpawnTime > 15f)
+                    waveSpawnTime -= 1f;
+                waveSpawnTimer = waveSpawnTime;
+                startEnemyAmount += Random.Range(minEnemyIncrease, maxEnemyIncrease);
+                StartCoroutine(SpawnWave());
+            }
+        }
     }
 
     private IEnumerator SpawnWave()
     {
         currentWave++;
+
+        List<GameObject> aliveEnemies = new List<GameObject>();
 
         for (int i = 0; i < startEnemyAmount; i++)
         {
@@ -48,6 +90,8 @@ public class Waves : MonoBehaviour
             enemyScript.OnDeath += EnemyDeath;
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }
+
+        AddWave(aliveEnemies);
     }
 
     private void EnemyDeath(Enemy enemy)
@@ -56,20 +100,23 @@ public class Waves : MonoBehaviour
 
         HighScore.Instance.EnemiesKilled++;
 
+        List<GameObject> aliveEnemies = waveList[enemy.waveSpawned - 1].aliveEnemies;
         aliveEnemies.Remove(enemy.gameObject);
         if (aliveEnemies.Count <= 0)
-        {
-            startEnemyAmount += Random.Range(minEnemyIncrease, maxEnemyIncrease);
             HighScore.Instance.WavesSurvived++;
-            StartCoroutine(SpawnWave());
-        }
     }
 
     private void GameOver()
     {
-        foreach(GameObject enemy in aliveEnemies)
-        {
-            Destroy(enemy);
-        }
+        foreach(WaveData wave in waveList)
+            foreach(GameObject enemy in wave.aliveEnemies)
+                Destroy(enemy);
+    }
+
+    private void AddWave(List<GameObject> aliveEnemies)
+    {
+        WaveData wave = new WaveData();
+        wave.aliveEnemies = aliveEnemies;
+        waveList.Add(wave);
     }
 }

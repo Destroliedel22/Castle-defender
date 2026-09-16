@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public event System.Action<Enemy> OnDeath;
 
     [HideInInspector] public Transform Target;
+    [HideInInspector] public int waveSpawned;
 
     [SerializeField] private int dmg;
 
@@ -153,7 +154,7 @@ public class Enemy : MonoBehaviour
         {
             attackTimer = Random.Range(minAttackTimer, maxAttackTimer);
             animator.SetTrigger(ATTACKING_STATE);
-            Target.GetComponent<Player>().Health -= dmg;
+            //Target.GetComponent<Player>().Health -= dmg;
         }
 
         if (!ArrivedAtTarget())

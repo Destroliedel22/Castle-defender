@@ -88,6 +88,7 @@ public class Waves : MonoBehaviour
             Enemy enemyScript = clone.GetComponent<Enemy>();
             enemyScript.Target = ladders[Random.Range(0, ladders.Count)];
             enemyScript.OnDeath += EnemyDeath;
+            enemyScript.waveSpawned = currentWave;
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }
 

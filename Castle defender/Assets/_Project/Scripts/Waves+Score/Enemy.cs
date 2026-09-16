@@ -1,7 +1,5 @@
 using System.Collections;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public enum EnemyState
 {
@@ -42,6 +40,7 @@ public class Enemy : MonoBehaviour
     private bool walkedForward;
     private bool hasClimbed;
     private bool isClimbing;
+    private bool isDead;
 
     private Coroutine climbRoutine;
 
@@ -61,19 +60,22 @@ public class Enemy : MonoBehaviour
 
     protected void Update()
     {
-        switch (enemyState)
+        if(!isDead)
         {
-            case EnemyState.Walking:
-                HandleWalkState();
-                break;
+            switch (enemyState)
+            {
+                case EnemyState.Walking:
+                    HandleWalkState();
+                    break;
 
-            case EnemyState.Climbing:
-                HandleClimbState();
-                break;
+                case EnemyState.Climbing:
+                    HandleClimbState();
+                    break;
 
-            case EnemyState.Attacking:
-                HandleAttackState();
-                break;
+                case EnemyState.Attacking:
+                    HandleAttackState();
+                    break;
+            }
         }
     }
 
@@ -223,6 +225,7 @@ public class Enemy : MonoBehaviour
             rb.isKinematic = false;
         }
         animator.enabled = false;
+        isDead = true;
         Destroy(this.gameObject, 2);
     }
 }

@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 4366833755967253772}
   - component: {fileID: 5648011987416548781}
   - component: {fileID: 651823928447715016}
+  - component: {fileID: 436957218960115936}
   - component: {fileID: -5980124956293284990}
   - component: {fileID: 1019964399338453871}
   - component: {fileID: -7542935599388232756}
@@ -200,6 +201,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &436957218960115936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7379808541362886826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725da5fa398f2b344b81485b62e7f489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MultiShot
+  powerUpTime: 20
+  angle: 3
 --- !u!65 &-5980124956293284990
 BoxCollider:
   m_ObjectHideFlags: 0

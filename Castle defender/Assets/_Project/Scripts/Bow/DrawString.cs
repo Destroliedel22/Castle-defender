@@ -11,6 +11,8 @@ public class DrawString : MonoBehaviour
     [HideInInspector] public float MiniGunTimeBetween;
     [HideInInspector] public bool CanPenetrate;
     [HideInInspector] public bool UseTrajectory;
+    [HideInInspector] public bool UseMultiShot;
+    [HideInInspector] public int MultiShotAngle;
 
     [SerializeField] private LineRenderer trajectoryLine;
     [SerializeField] private Transform stringRestPoint;
@@ -26,6 +28,9 @@ public class DrawString : MonoBehaviour
     private float normalizedDraw;
 
     private float miniGunTimeBetween;
+
+    private GameObject lowerArrow;
+    private GameObject upperArrow;
 
     private void Awake()
     {
@@ -94,7 +99,18 @@ public class DrawString : MonoBehaviour
         loadArrow.ArrowObject = grabbedHand.parent.GetComponentInChildren<Arrow>().gameObject;
         loadArrow.Load();
         loadArrow.ArrowScript.Bow = this.gameObject;
+
         loadArrow.ArrowScript.CanPenetrate = CanPenetrate;
+        if (UseMultiShot)
+        {
+            lowerArrow = Instantiate(loadArrow.ArrowObject, loadArrow.ArrowObject.transform.position, loadArrow.ArrowObject.transform.rotation * Quaternion.Euler(MultiShotAngle, 0, 0));
+            lowerArrow.transform.SetParent(loadArrow.transform);
+            lowerArrow.transform.localScale = loadArrow.ArrowObject.transform.localScale;
+
+            upperArrow = Instantiate(loadArrow.ArrowObject, loadArrow.ArrowObject.transform.position, loadArrow.ArrowObject.transform.rotation * Quaternion.Euler(-MultiShotAngle, 0, 0));
+            upperArrow.transform.SetParent(loadArrow.transform);
+            upperArrow.transform.localScale = loadArrow.ArrowObject.transform.localScale;
+        }
     }
 
     public void OnLetGo(SelectExitEventArgs args)
@@ -102,6 +118,8 @@ public class DrawString : MonoBehaviour
         grabbedHand.parent.GetComponentInChildren<SpawnArrow>().Spawn();
         grabbedHand = null;
         ShootArrow();
+        if (UseMultiShot)
+            MultiShot();
     }
 
     private void ShootArrow()
@@ -116,6 +134,13 @@ public class DrawString : MonoBehaviour
             loadArrow.ArrowObject = null;
             loadArrow.ArrowLoaded = false;
         }
+    }
+
+    private Vector3 ArrowSpeed()
+    {
+        //Calculates how far the string is drawn for more force on the arrow
+        float arrowSpeed = Mathf.Lerp(Settings.MinArrowSpeed, Settings.MaxArrowSpeed, clampDistance / Settings.MaxDrawDistance);
+        return drawAxis * -arrowSpeed;
     }
 
     private void Minigun()
@@ -147,11 +172,32 @@ public class DrawString : MonoBehaviour
         return Quaternion.Euler(randomX, randomY, 0) * drawAxis;
     }
 
-    private Vector3 ArrowSpeed()
+    private void MultiShot()
     {
-        //Calculates how far the string is drawn for more force on the arrow
+        Arrow lowerArrowScript = lowerArrow.GetComponent<Arrow>();
+        lowerArrowScript.SwitchSettings();
+        lowerArrowScript.Bow = this.gameObject;
+        lowerArrowScript.IsShot = true;
+        lowerArrow.transform.parent = null;
+
+        Rigidbody lrb = lowerArrow.GetComponent<Rigidbody>();
+        lrb.AddForce(AngledArrowSpeed(MultiShotAngle), ForceMode.VelocityChange);
+
+        Arrow upperArrowScript = upperArrow.GetComponent<Arrow>();
+        upperArrowScript.SwitchSettings();
+        upperArrowScript.Bow = this.gameObject;
+        upperArrowScript.IsShot = true;
+        upperArrow.transform.parent = null;
+
+        Rigidbody urb = upperArrow.GetComponent<Rigidbody>();
+        urb.AddForce(AngledArrowSpeed(-MultiShotAngle), ForceMode.VelocityChange);
+    }
+
+    private Vector3 AngledArrowSpeed(float angle)
+    {
         float arrowSpeed = Mathf.Lerp(Settings.MinArrowSpeed, Settings.MaxArrowSpeed, clampDistance / Settings.MaxDrawDistance);
-        return drawAxis * -arrowSpeed;
+        Vector3 rotatedDirection = Quaternion.AngleAxis(angle, stringRestPoint.right) * drawAxis;
+        return rotatedDirection * -arrowSpeed;
     }
 
     private Vector3[] CalculateTrajectoryPoint(Vector3 startPos, Vector3 startVelocity)

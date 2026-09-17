@@ -9,8 +9,8 @@ public class DrawString : MonoBehaviour
 
     [HideInInspector] public bool UseMinigun;
     [HideInInspector] public float MiniGunTimeBetween;
-
     [HideInInspector] public bool CanPenetrate;
+    [HideInInspector] public bool UseTrajectory;
 
     [SerializeField] private LineRenderer trajectoryLine;
     [SerializeField] private Transform stringRestPoint;
@@ -65,7 +65,7 @@ public class DrawString : MonoBehaviour
             if (clampDistance == Settings.MaxDrawDistance && UseMinigun)
                 Minigun();
 
-            if (loadArrow.ArrowObject)
+            if (loadArrow.ArrowObject && UseTrajectory)
             {
                 //Trajectory
                 Vector3 trajectoryStartPos = loadArrow.ArrowObject.transform.position;
@@ -81,7 +81,8 @@ public class DrawString : MonoBehaviour
             normalizedDraw -= 0.1f;
             animator.Play("Wooden Bow", 0, normalizedDraw);
 
-            trajectoryLine.positionCount = 0;
+            if (UseTrajectory)
+                trajectoryLine.positionCount = 0;
         }
 
         rb.MoveRotation(stringRestPoint.rotation);

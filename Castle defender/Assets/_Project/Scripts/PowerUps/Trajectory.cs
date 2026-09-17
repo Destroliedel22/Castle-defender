@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class Penetrate : PowerUp
+public class Trajectory : PowerUp
 {
     private DrawString drawString;
 
     protected override void Apply(Arrow arrow)
     {
         drawString = arrow.Bow.GetComponentInChildren<DrawString>();
-        drawString.CanPenetrate = true;
+        drawString.UseTrajectory = true;
     }
 
     protected override void Remove(Arrow arrow)
     {
-        drawString.CanPenetrate = false;
+        drawString.UseTrajectory = false;
     }
 }

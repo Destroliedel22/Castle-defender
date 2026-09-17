@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class DrawString : MonoBehaviour
 {
     [HideInInspector] public float DrawDistance;
+
+    [HideInInspector] public bool UseMinigun;
+    [HideInInspector] public float MiniGunTimeBetween;
 
     [SerializeField] private LineRenderer trajectoryLine;
 
@@ -14,7 +16,6 @@ public class DrawString : MonoBehaviour
 
     private Rigidbody rb;
     private Animator animator;
-    private XRGrabInteractable grabbable;
 
     private Transform grabbedHand;
     private Vector3 startPos;
@@ -22,13 +23,13 @@ public class DrawString : MonoBehaviour
     private float clampDistance;
     private float normalizedDraw;
 
+    private float miniGunTimeBetween;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInParent<Animator>();
         animator.speed = 0;
-
-        grabbable = GetComponent<XRGrabInteractable>();
     }
 
     private void Update()
@@ -59,6 +60,9 @@ public class DrawString : MonoBehaviour
             normalizedDraw = Mathf.InverseLerp(settings.MinDrawDistance, settings.MaxDrawDistance, clampDistance);
             animator.Play("Wooden Bow", 0, normalizedDraw);
 
+            if(clampDistance == settings.MaxDrawDistance && UseMinigun)
+                Minigun();
+
             if (loadArrow.ArrowObject)
             {
                 //Trajectory
@@ -86,6 +90,7 @@ public class DrawString : MonoBehaviour
         grabbedHand = args.interactorObject.transform;
         loadArrow.ArrowObject = grabbedHand.parent.GetComponentInChildren<Arrow>().gameObject;
         loadArrow.Load();
+        loadArrow.ArrowScript.Bow = this.gameObject;
     }
 
     public void OnLetGo(SelectExitEventArgs args)
@@ -107,6 +112,35 @@ public class DrawString : MonoBehaviour
             loadArrow.ArrowObject = null;
             loadArrow.ArrowLoaded = false;
         }
+    }
+
+    private void Minigun()
+    {
+        if (miniGunTimeBetween > 0)
+            miniGunTimeBetween -= Time.deltaTime;
+        else
+        {
+            miniGunTimeBetween = MiniGunTimeBetween;
+
+            GameObject arrow = loadArrow.ArrowObject;
+            GameObject clone = Instantiate(arrow, arrow.transform.position, arrow.transform.rotation);
+
+            Arrow arrowScript = clone.GetComponent<Arrow>();
+            arrowScript.SwitchSettings();
+            arrowScript.Bow = this.gameObject;
+            arrowScript.IsShot = true;
+
+            Rigidbody rb = clone.GetComponent<Rigidbody>();
+            rb.AddForce(SpreadDirection() * -settings.MaxArrowSpeed, ForceMode.VelocityChange);
+        }
+    }
+
+    private Vector3 SpreadDirection()
+    {
+        float randomX = Random.Range(-7, 7);
+        float randomY = Random.Range(-7, 7);
+
+        return Quaternion.Euler(randomX, randomY, 0) * drawAxis;
     }
 
     private Vector3 ArrowSpeed()

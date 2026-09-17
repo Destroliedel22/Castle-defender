@@ -1371,6 +1371,7 @@ GameObject:
   - component: {fileID: 6160628670707892534}
   - component: {fileID: 52375130047588540}
   - component: {fileID: 5184942277217851226}
+  - component: {fileID: 4521272220307212498}
   m_Layer: 6
   m_Name: Orc Wizard with Wand
   m_TagString: Enemy
@@ -1430,6 +1431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   Target: {fileID: 0}
+  waveSpawned: 0
   dmg: 25
   walkSpeed: 1
   climbTime: 5
@@ -1437,6 +1439,28 @@ MonoBehaviour:
   maxAttackTimer: 5
   walkToClimbDelay: 1
   climbToWalkDelay: 2
+  shootPowerup: {fileID: 4521272220307212498}
+--- !u!114 &4521272220307212498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6101322159136297084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd742be955b4094a91d7e5f95434c2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootPowerup
+  powerUps:
+  - PowerUpPrefab: {fileID: 6262775829708420652, guid: cc9c7a19a5565d54cae05e3ad5fb7c8a, type: 3}
+    SpawnWeight: 20
+  - PowerUpPrefab: {fileID: 795141063581028652, guid: ac78c94fd1580f04592f96aa7f71bdd8, type: 3}
+    SpawnWeight: 20
+  - PowerUpPrefab: {fileID: 4774535194091720085, guid: 35bebb25c15760b40851e404f4cc272e, type: 3}
+    SpawnWeight: 20
+  nothingWeight: 100
+  forceAmount: 300
 --- !u!1 &6222010826786505697
 GameObject:
   m_ObjectHideFlags: 0

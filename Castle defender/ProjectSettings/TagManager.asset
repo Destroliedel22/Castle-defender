@@ -19,12 +19,12 @@ TagManager:
   - UI
   - Enemy
   - Ground
-  - Ricochet
+  - Shield
   - Player
   - Arrow
   - Bow
   - String
-  - 
+  - PowerUp
   - 
   - 
   - 

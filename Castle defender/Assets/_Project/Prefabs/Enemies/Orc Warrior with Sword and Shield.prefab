@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1147439460451970489}
   - component: {fileID: 4108373740809719058}
   - component: {fileID: 1924788943827526418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bip001 L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 797161715281723964}
   - component: {fileID: 7321691842776174459}
   - component: {fileID: 9067887915333892755}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1279,6 +1279,7 @@ GameObject:
   - component: {fileID: 1608989931998732518}
   - component: {fileID: 5348724575883134192}
   - component: {fileID: 5462007684084263328}
+  - component: {fileID: 7587224365511282184}
   m_Layer: 6
   m_Name: Orc Warrior with Sword and Shield
   m_TagString: Enemy
@@ -1338,6 +1339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShieldEnemy
   Target: {fileID: 0}
+  waveSpawned: 0
   dmg: 25
   walkSpeed: 1
   climbTime: 5
@@ -1345,10 +1347,32 @@ MonoBehaviour:
   maxAttackTimer: 5
   walkToClimbDelay: 1
   climbToWalkDelay: 3
+  shootPowerup: {fileID: 7587224365511282184}
   blockRollTime: 3
   blockChance: 20
   minBlockTime: 2
   maxBlockTime: 4
+--- !u!114 &7587224365511282184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219587149051898319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd742be955b4094a91d7e5f95434c2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootPowerup
+  powerUps:
+  - PowerUpPrefab: {fileID: 6262775829708420652, guid: cc9c7a19a5565d54cae05e3ad5fb7c8a, type: 3}
+    SpawnWeight: 20
+  - PowerUpPrefab: {fileID: 795141063581028652, guid: ac78c94fd1580f04592f96aa7f71bdd8, type: 3}
+    SpawnWeight: 20
+  - PowerUpPrefab: {fileID: 4774535194091720085, guid: 35bebb25c15760b40851e404f4cc272e, type: 3}
+    SpawnWeight: 20
+  nothingWeight: 100
+  forceAmount: 300
 --- !u!1 &5250986641823363141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,7 +1502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2186426930702323878}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bip001 L Hand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1510,7 +1534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5448364715272119011}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bip001 L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float walkToClimbDelay = 1;
     [SerializeField] private float climbToWalkDelay = 2;
 
+    [SerializeField] private ShootPowerup shootPowerup;
+
     protected Animator animator;
 
     protected const string WALKING_STATE = "Walking";
@@ -40,6 +42,7 @@ public class Enemy : MonoBehaviour
     private bool walkedForward;
     private bool hasClimbed;
     private bool isClimbing;
+    private bool powerUpShot;
     private bool isDead;
 
     private Coroutine climbRoutine;
@@ -217,6 +220,12 @@ public class Enemy : MonoBehaviour
     {
         if (climbRoutine != null)
             StopCoroutine(climbRoutine);
+
+        if(!powerUpShot)
+        {
+            shootPowerup.LaunchPowerUp(transform);
+            powerUpShot = true;
+        }
 
         OnDeath?.Invoke(this);
         foreach (Rigidbody rb in rigidbodies)

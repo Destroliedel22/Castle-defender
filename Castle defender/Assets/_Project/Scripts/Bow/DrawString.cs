@@ -3,14 +3,14 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class DrawString : MonoBehaviour
 {
+    public PlayerSettings Settings;
+
     [HideInInspector] public float DrawDistance;
 
     [HideInInspector] public bool UseMinigun;
     [HideInInspector] public float MiniGunTimeBetween;
 
     [SerializeField] private LineRenderer trajectoryLine;
-
-    [SerializeField] private PlayerSettings settings;
     [SerializeField] private Transform stringRestPoint;
     [SerializeField] private LoadArrow loadArrow;
 
@@ -50,17 +50,17 @@ public class DrawString : MonoBehaviour
             DrawDistance = Vector3.Dot(handDirection, drawAxis);
 
             //Distance keeps between the min and max
-            clampDistance = Mathf.Clamp(DrawDistance, settings.MinDrawDistance, settings.MaxDrawDistance);
+            clampDistance = Mathf.Clamp(DrawDistance, Settings.MinDrawDistance, Settings.MaxDrawDistance);
 
             //Calculates and sets the position of the string on the given axis according to where the hand is.
             Vector3 pos = startPos + drawAxis * clampDistance;
             transform.position = pos;
 
             //Gets a value between 0 and 1 to play the animation
-            normalizedDraw = Mathf.InverseLerp(settings.MinDrawDistance, settings.MaxDrawDistance, clampDistance);
+            normalizedDraw = Mathf.InverseLerp(Settings.MinDrawDistance, Settings.MaxDrawDistance, clampDistance);
             animator.Play("Wooden Bow", 0, normalizedDraw);
 
-            if(clampDistance == settings.MaxDrawDistance && UseMinigun)
+            if(clampDistance == Settings.MaxDrawDistance && UseMinigun)
                 Minigun();
 
             if (loadArrow.ArrowObject)
@@ -131,7 +131,7 @@ public class DrawString : MonoBehaviour
             arrowScript.IsShot = true;
 
             Rigidbody rb = clone.GetComponent<Rigidbody>();
-            rb.AddForce(SpreadDirection() * -settings.MaxArrowSpeed, ForceMode.VelocityChange);
+            rb.AddForce(SpreadDirection() * -Settings.MaxArrowSpeed, ForceMode.VelocityChange);
         }
     }
 
@@ -146,7 +146,7 @@ public class DrawString : MonoBehaviour
     private Vector3 ArrowSpeed()
     {
         //Calculates how far the string is drawn for more force on the arrow
-        float arrowSpeed = Mathf.Lerp(settings.MinArrowSpeed, settings.MaxArrowSpeed, clampDistance / settings.MaxDrawDistance);
+        float arrowSpeed = Mathf.Lerp(Settings.MinArrowSpeed, Settings.MaxArrowSpeed, clampDistance / Settings.MaxDrawDistance);
         return drawAxis * -arrowSpeed;
     }
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4678009470040240459}
   - component: {fileID: 7859091486772178516}
   - component: {fileID: 8875178094847058547}
+  - component: {fileID: 3700579405860781942}
   - component: {fileID: 8405099011501800606}
   - component: {fileID: 2776631072083197480}
   - component: {fileID: 8590101207621009994}
@@ -125,6 +126,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &3700579405860781942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898427251215111720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223ee0b502f74c94d9e65cfca91e6b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FasterArrow
+  powerUpTime: 20
+  normalSettings: {fileID: 11400000, guid: 9c725d10e272b6a48ad3c6f82914cec2, type: 2}
+  fastSettings: {fileID: 11400000, guid: f2e046fd4f51460488de344a3be0d9fb, type: 2}
 --- !u!65 &8405099011501800606
 BoxCollider:
   m_ObjectHideFlags: 0

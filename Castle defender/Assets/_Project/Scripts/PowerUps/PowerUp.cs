@@ -1,17 +1,29 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class PowerUp : MonoBehaviour
 {
     [SerializeField] private float powerUpTime;
-    [SerializeField] private int arrowLayer;
+
+    private Collider[] colliders;
+    private Image image;
+    private int arrowLayer = 10;
+
+    private void Awake()
+    {
+        image = GetComponentInChildren<Image>();
+        colliders = GetComponents<Collider>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == arrowLayer)
         {
-            print("Arrow");
             StartCoroutine(PowerUpTimer(other.GetComponent<Arrow>()));
+            image.enabled = false;
+            foreach (Collider col in colliders)
+                col.enabled = false;
         }
     }
 
@@ -31,5 +43,6 @@ public abstract class PowerUp : MonoBehaviour
         }
 
         Remove(arrow);
+        Destroy(gameObject);
     }
 }

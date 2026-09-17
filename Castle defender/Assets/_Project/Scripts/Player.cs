@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     {
         if (Health <= 0)
         {
-            if(!gameOverEventCalled)
+            if (!gameOverEventCalled)
             {
                 gameOverEventCalled = true;
                 GameOver?.Invoke();

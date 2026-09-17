@@ -10,6 +10,8 @@ public class DrawString : MonoBehaviour
     [HideInInspector] public bool UseMinigun;
     [HideInInspector] public float MiniGunTimeBetween;
 
+    [HideInInspector] public bool CanPenetrate;
+
     [SerializeField] private LineRenderer trajectoryLine;
     [SerializeField] private Transform stringRestPoint;
     [SerializeField] private LoadArrow loadArrow;
@@ -60,7 +62,7 @@ public class DrawString : MonoBehaviour
             normalizedDraw = Mathf.InverseLerp(Settings.MinDrawDistance, Settings.MaxDrawDistance, clampDistance);
             animator.Play("Wooden Bow", 0, normalizedDraw);
 
-            if(clampDistance == Settings.MaxDrawDistance && UseMinigun)
+            if (clampDistance == Settings.MaxDrawDistance && UseMinigun)
                 Minigun();
 
             if (loadArrow.ArrowObject)
@@ -91,6 +93,7 @@ public class DrawString : MonoBehaviour
         loadArrow.ArrowObject = grabbedHand.parent.GetComponentInChildren<Arrow>().gameObject;
         loadArrow.Load();
         loadArrow.ArrowScript.Bow = this.gameObject;
+        loadArrow.ArrowScript.CanPenetrate = CanPenetrate;
     }
 
     public void OnLetGo(SelectExitEventArgs args)

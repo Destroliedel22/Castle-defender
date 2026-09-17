@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 4395583901515321807}
   - component: {fileID: 91281494878050979}
   - component: {fileID: 862639538369425359}
+  - component: {fileID: 6746969201377321414}
   - component: {fileID: 5515612460099634409}
   - component: {fileID: -5417364086795759065}
   - component: {fileID: 8625204583073525575}
@@ -200,6 +201,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &6746969201377321414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722785928955469982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e9ac752cff56ca4ba23bdd156fd1e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Penetrate
+  powerUpTime: 20
 --- !u!65 &5515612460099634409
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class FasterArrow : PowerUp
 
     protected override void Apply(Arrow arrow)
     {
-        drawString = arrow.Bow.GetComponent<DrawString>();
+        drawString = arrow.Bow.GetComponentInChildren<DrawString>();
         drawString.Settings = fastSettings;
     }
 

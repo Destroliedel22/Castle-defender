@@ -55,7 +55,7 @@ public class Waves : MonoBehaviour
 
     private void Update()
     {
-        if(gameStarted)
+        if (gameStarted)
         {
             if (waveSpawnTimer > 0f)
                 waveSpawnTimer -= Time.deltaTime;
@@ -109,8 +109,8 @@ public class Waves : MonoBehaviour
 
     private void GameOver()
     {
-        foreach(WaveData wave in waveList)
-            foreach(GameObject enemy in wave.aliveEnemies)
+        foreach (WaveData wave in waveList)
+            foreach (GameObject enemy in wave.aliveEnemies)
                 Destroy(enemy);
     }
 

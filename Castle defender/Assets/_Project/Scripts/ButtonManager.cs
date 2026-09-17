@@ -41,7 +41,7 @@ public class ButtonManager : MonoBehaviour
 
     public async Task QuitGame()
     {
-        if(gameStarted)
+        if (gameStarted)
             await LbBehaviour.Instance.AddEntry(HighScore.Instance.Name, HighScore.Instance.WavesSurvived, HighScore.Instance.EnemiesKilled);
 
         Application.Quit();

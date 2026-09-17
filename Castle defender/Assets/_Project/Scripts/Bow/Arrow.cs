@@ -6,6 +6,7 @@ public class Arrow : MonoBehaviour
 
     [HideInInspector] public bool IsShot;
     [HideInInspector] public bool HasHit;
+    [HideInInspector] public bool CanPenetrate;
 
     [SerializeField] private Collider tipCollider;
     [SerializeField] private TrailRenderer trailRenderer;
@@ -42,6 +43,16 @@ public class Arrow : MonoBehaviour
                 case ("Enemy"):
                     EnemyHit();
                     Stuck();
+                    break;
+
+                case ("Shield"):
+                    if (CanPenetrate)
+                    {
+                        EnemyHit();
+                        Stuck();
+                    }
+                    else
+                        Stuck();
                     break;
 
                 default:

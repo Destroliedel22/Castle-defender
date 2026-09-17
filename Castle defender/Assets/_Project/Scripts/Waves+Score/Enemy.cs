@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
 
     protected void Update()
     {
-        if(!isDead)
+        if (!isDead)
         {
             switch (enemyState)
             {
@@ -221,7 +221,7 @@ public class Enemy : MonoBehaviour
         if (climbRoutine != null)
             StopCoroutine(climbRoutine);
 
-        if(!powerUpShot)
+        if (!powerUpShot)
         {
             shootPowerup.LaunchPowerUp(transform);
             powerUpShot = true;

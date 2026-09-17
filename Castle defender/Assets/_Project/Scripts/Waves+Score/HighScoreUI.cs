@@ -15,7 +15,7 @@ public class HighScoreUI : MonoBehaviour
 
     private int wavesSurvived;
     private int enemiesKilled;
-    
+
     private void Update()
     {
         if (HighScore.Instance.WavesSurvived > wavesSurvived)
@@ -24,7 +24,7 @@ public class HighScoreUI : MonoBehaviour
             wavesText.text = baseWaveText + wavesSurvived;
         }
 
-        if(HighScore.Instance.EnemiesKilled > enemiesKilled)
+        if (HighScore.Instance.EnemiesKilled > enemiesKilled)
         {
             enemiesKilled = HighScore.Instance.EnemiesKilled;
             enemiesText.text = baseEnemiesText + enemiesKilled;

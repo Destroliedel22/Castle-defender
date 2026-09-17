@@ -40,7 +40,7 @@ public class ShootPowerup : MonoBehaviour
     {
         GameObject powerUp = PowerUp();
 
-        if(powerUp)
+        if (powerUp)
         {
             GameObject clone = Instantiate(powerUp, pos.position, powerUp.transform.rotation);
 

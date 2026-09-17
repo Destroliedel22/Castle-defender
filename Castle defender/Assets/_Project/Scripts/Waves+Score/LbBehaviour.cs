@@ -57,7 +57,7 @@ public class LbBehaviour : MonoBehaviour
         keys.Add("Leaderboard");
         var result = await CloudSaveService.Instance.Data.Player.LoadAsync(keys);
 
-        if(result.ContainsKey("Leaderboard"))
+        if (result.ContainsKey("Leaderboard"))
             LbData = result["Leaderboard"].Value.GetAs<LeaderboardData>();
         else
         {

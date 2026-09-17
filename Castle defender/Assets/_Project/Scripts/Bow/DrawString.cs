@@ -13,6 +13,7 @@ public class DrawString : MonoBehaviour
     [HideInInspector] public bool UseTrajectory;
     [HideInInspector] public bool UseMultiShot;
     [HideInInspector] public int MultiShotAngle;
+    [HideInInspector] public bool IsHoming;
 
     [SerializeField] private LineRenderer trajectoryLine;
     [SerializeField] private Transform stringRestPoint;
@@ -101,6 +102,7 @@ public class DrawString : MonoBehaviour
         loadArrow.ArrowScript.Bow = this.gameObject;
 
         loadArrow.ArrowScript.CanPenetrate = CanPenetrate;
+        loadArrow.ArrowScript.IsHoming = IsHoming;
         if (UseMultiShot)
         {
             lowerArrow = Instantiate(loadArrow.ArrowObject, loadArrow.ArrowObject.transform.position, loadArrow.ArrowObject.transform.rotation * Quaternion.Euler(MultiShotAngle, 0, 0));

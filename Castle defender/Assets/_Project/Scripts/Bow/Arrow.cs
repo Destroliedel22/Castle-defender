@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -7,6 +8,7 @@ public class Arrow : MonoBehaviour
     [HideInInspector] public bool IsShot;
     [HideInInspector] public bool HasHit;
     [HideInInspector] public bool CanPenetrate;
+    [HideInInspector] public bool IsHoming;
 
     [SerializeField] private Collider tipCollider;
     [SerializeField] private TrailRenderer trailRenderer;
@@ -14,6 +16,8 @@ public class Arrow : MonoBehaviour
 
     private Vector3 previousPosition;
     private float calculatedVelocity;
+
+    private Collider[] enemiesInRange;
 
     private GameObject hitObject;
     private Rigidbody rb;
@@ -70,11 +74,51 @@ public class Arrow : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
             if (trailRenderer.enabled == false)
                 trailRenderer.enabled = true;
+
+            if (IsHoming)
+                Homing();
         }
 
         Vector3 currentPosition = transform.position;
         calculatedVelocity = (currentPosition - previousPosition).magnitude / Time.deltaTime;
         previousPosition = currentPosition;
+    }
+
+    private void Homing()
+    {
+        Transform closestEnemyPos = null;
+
+        if (enemiesInRange.Length < 1 && closestEnemyPos == null)
+        {
+            enemiesInRange = Physics.OverlapSphere(transform.position, 2f, 6);
+
+            foreach (Collider collider in enemiesInRange)
+            {
+                if (closestEnemyPos == null || (closestEnemyPos.position.x + closestEnemyPos.position.z) > (collider.transform.position.x + collider.transform.position.z))
+                    closestEnemyPos = collider.transform;
+            }
+        }
+        else if (closestEnemyPos != null)
+        {
+            //coroutine
+        }
+    }
+
+    private IEnumerator RotateTowardsEnemy(Transform enemyTransform)
+    {
+        Quaternion startRot = transform.rotation;
+        Quaternion endRot = Quaternion.LookRotation(enemyTransform.position);
+        float time = 0;
+
+        while (time < 1f)
+        {
+            time += Time.deltaTime;
+            float progress = time / 1f;
+
+            transform.rotation = Quaternion.Slerp(startRot, endRot, progress);
+
+            yield return null;
+        }
     }
 
     public void SwitchSettings()

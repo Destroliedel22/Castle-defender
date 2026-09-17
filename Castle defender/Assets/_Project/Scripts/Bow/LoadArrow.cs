@@ -5,14 +5,14 @@ public class LoadArrow : MonoBehaviour
     public GameObject ArrowObject;
     public bool ArrowLoaded;
 
-    [SerializeField] private PlayerSettings settings;
+    public Arrow ArrowScript;
 
-    private Arrow arrowScript;
+    [SerializeField] private PlayerSettings settings;
 
     public void Load()
     {
         ArrowLoaded = true;
-        arrowScript = ArrowObject.GetComponent<Arrow>();
+        ArrowScript = ArrowObject.GetComponent<Arrow>();
         ArrowObject.transform.SetParent(null);
         ArrowObject.transform.position = transform.position;
         ArrowObject.transform.rotation = transform.rotation;
@@ -21,8 +21,8 @@ public class LoadArrow : MonoBehaviour
 
     public void Shoot()
     {
-        arrowScript.SwitchSettings();
-        arrowScript.IsShot = true;
+        ArrowScript.SwitchSettings();
+        ArrowScript.IsShot = true;
         ArrowObject.transform.parent = null;
     }
 }

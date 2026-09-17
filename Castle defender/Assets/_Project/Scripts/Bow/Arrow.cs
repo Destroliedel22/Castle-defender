@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    public GameObject Bow;
+
     [HideInInspector] public bool IsShot;
     [HideInInspector] public bool HasHit;
 
@@ -53,7 +55,7 @@ public class Arrow : MonoBehaviour
     {
         if (IsShot)
         {
-            Vector3 direction = rb.linearVelocity;
+            Vector3 direction = rb.linearVelocity.normalized;
             transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
             if (trailRenderer.enabled == false)
                 trailRenderer.enabled = true;

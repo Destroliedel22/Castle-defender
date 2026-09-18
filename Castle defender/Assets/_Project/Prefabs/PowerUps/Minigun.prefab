@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8709495171447731922}
   - component: {fileID: 5354783518323133669}
   - component: {fileID: 4048119157023495837}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8295674700690335084}
   - component: {fileID: 2072368336654582469}
   - component: {fileID: -7687028584167496551}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Minigun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGun
   powerUpTime: 30
-  arrowLayer: 10
   timeBetweenArrows: 0.1
 --- !u!65 &8295674700690335084
 BoxCollider:
@@ -229,7 +228,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 8192
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

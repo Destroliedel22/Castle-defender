@@ -69,7 +69,7 @@ public class DrawString : MonoBehaviour
             normalizedDraw = Mathf.InverseLerp(Settings.MinDrawDistance, Settings.MaxDrawDistance, clampDistance);
             animator.Play("Wooden Bow", 0, normalizedDraw);
 
-            if (clampDistance == Settings.MaxDrawDistance && UseMinigun)
+            if (loadArrow.ArrowObject && UseMinigun)
                 Minigun();
 
             if (loadArrow.ArrowObject && UseTrajectory)
@@ -80,6 +80,8 @@ public class DrawString : MonoBehaviour
                 trajectoryLine.positionCount = points.Length;
                 trajectoryLine.SetPositions(points);
             }
+            else
+                trajectoryLine.positionCount = 0;
         }
         else
         {
@@ -88,8 +90,7 @@ public class DrawString : MonoBehaviour
             normalizedDraw -= 0.1f;
             animator.Play("Wooden Bow", 0, normalizedDraw);
 
-            if (UseTrajectory)
-                trajectoryLine.positionCount = 0;
+            trajectoryLine.positionCount = 0;
         }
 
         rb.MoveRotation(stringRestPoint.rotation);
@@ -124,6 +125,11 @@ public class DrawString : MonoBehaviour
         ShootArrow();
         if (UseMultiShot)
             MultiShot();
+        else
+        {
+            Destroy(lowerArrow);
+            Destroy(upperArrow);
+        }
     }
 
     private void ShootArrow()
@@ -153,7 +159,9 @@ public class DrawString : MonoBehaviour
             miniGunTimeBetween -= Time.deltaTime;
         else
         {
-            miniGunTimeBetween = MiniGunTimeBetween;
+            float drawProgress = Mathf.InverseLerp(Settings.MinDrawDistance, Settings.MaxDrawDistance, clampDistance);
+            float currentFireInterval = Mathf.Lerp(0.5f, 0.08f, drawProgress);
+            miniGunTimeBetween = currentFireInterval;
 
             GameObject arrow = loadArrow.ArrowObject;
             GameObject clone = Instantiate(arrow, arrow.transform.position, arrow.transform.rotation);
@@ -164,16 +172,19 @@ public class DrawString : MonoBehaviour
             arrowScript.IsShot = true;
 
             Rigidbody rb = clone.GetComponent<Rigidbody>();
-            rb.AddForce(SpreadDirection() * -Settings.MaxArrowSpeed, ForceMode.VelocityChange);
+            rb.AddForce(SpreadDirection(), ForceMode.VelocityChange);
         }
     }
 
     private Vector3 SpreadDirection()
     {
-        float randomX = Random.Range(-7, 7);
-        float randomY = Random.Range(-7, 7);
+        float randomX = Random.Range(-5, 5);
+        float randomY = Random.Range(-5, 5);
 
-        return Quaternion.Euler(randomX, randomY, 0) * drawAxis;
+        float arrowSpeed = Mathf.Lerp(Settings.MinArrowSpeed, Settings.MaxArrowSpeed, clampDistance / Settings.MaxDrawDistance);
+        Quaternion offset = Quaternion.Euler(randomX, randomY, 0);
+
+        return offset * drawAxis * -arrowSpeed;
     }
 
     private void MultiShot()

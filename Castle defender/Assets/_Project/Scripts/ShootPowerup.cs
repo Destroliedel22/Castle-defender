@@ -44,7 +44,7 @@ public class ShootPowerup : MonoBehaviour
         {
             GameObject clone = Instantiate(powerUp, pos.position, powerUp.transform.rotation);
 
-            int tiltAngle = Random.Range(0, 30);
+            int tiltAngle = Random.Range(10, 30);
             int randomYRotation = Random.Range(0, 360);
 
             Vector3 direction = Quaternion.Euler(tiltAngle, randomYRotation, 0) * Vector3.up;

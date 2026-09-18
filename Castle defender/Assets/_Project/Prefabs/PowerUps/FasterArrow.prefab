@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8405099011501800606}
   - component: {fileID: 2776631072083197480}
   - component: {fileID: 8590101207621009994}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: FasterArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 8192
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 2533780907223359011}
   - component: {fileID: 7209073068972243638}
   - component: {fileID: 2759048714725447900}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 197259278576976075}
   - component: {fileID: 1753118279867053313}
   - component: {fileID: 7210832262416006317}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5515612460099634409}
   - component: {fileID: -5417364086795759065}
   - component: {fileID: 8625204583073525575}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Penetrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 8192
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

@@ -15,6 +15,6 @@ public class MultiShot : PowerUp
 
     protected override void Remove(Arrow arrow)
     {
-        drawString.UseMultiShot = true;
+        drawString.UseMultiShot = false;
     }
 }

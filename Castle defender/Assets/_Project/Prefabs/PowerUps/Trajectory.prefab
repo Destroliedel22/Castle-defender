@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 863797239534874676}
   - component: {fileID: 310437516101775719}
   - component: {fileID: 6753931221963432698}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Trajectory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: -2184742764400620670}
   - component: {fileID: 4153190512865479007}
   - component: {fileID: -1973578788997047722}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Trajectory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 8192
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

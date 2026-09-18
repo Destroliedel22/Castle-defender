@@ -20,10 +20,14 @@ public abstract class PowerUp : MonoBehaviour
     {
         if (other.gameObject.layer == arrowLayer)
         {
-            StartCoroutine(PowerUpTimer(other.GetComponent<Arrow>()));
-            image.enabled = false;
-            foreach (Collider col in colliders)
-                col.enabled = false;
+            Arrow arrow = other.GetComponent<Arrow>();
+            if (arrow.IsShot)
+            {
+                StartCoroutine(PowerUpTimer(arrow));
+                image.enabled = false;
+                foreach (Collider col in colliders)
+                    col.enabled = false;
+            }
         }
     }
 

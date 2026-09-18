@@ -9,6 +9,7 @@ public class Arrow : MonoBehaviour
     [HideInInspector] public bool HasHit;
     [HideInInspector] public bool CanPenetrate;
     [HideInInspector] public bool IsHoming;
+    [HideInInspector] public float HomingTurnSpeed;
 
     [SerializeField] private Collider tipCollider;
     [SerializeField] private TrailRenderer trailRenderer;
@@ -16,6 +17,9 @@ public class Arrow : MonoBehaviour
 
     private Vector3 previousPosition;
     private float calculatedVelocity;
+
+    private Transform closestEnemyPos;
+    private float closestEnemyDistance;
 
     private Collider[] enemiesInRange;
 
@@ -51,12 +55,8 @@ public class Arrow : MonoBehaviour
 
                 case ("Shield"):
                     if (CanPenetrate)
-                    {
                         EnemyHit();
-                        Stuck();
-                    }
-                    else
-                        Stuck();
+                    Stuck();
                     break;
 
                 default:
@@ -75,8 +75,14 @@ public class Arrow : MonoBehaviour
             if (trailRenderer.enabled == false)
                 trailRenderer.enabled = true;
 
-            if (IsHoming)
-                Homing();
+            if (IsHoming && closestEnemyPos == null)
+                FindClosestEnemy();
+            else if (IsHoming && closestEnemyPos != null)
+            {
+                Vector3 homingDirection = (closestEnemyPos.position - transform.position).normalized;
+                Vector3 newDirection = Vector3.RotateTowards(rb.linearVelocity.normalized, homingDirection, HomingTurnSpeed * Time.fixedDeltaTime, 0f);
+                rb.linearVelocity = newDirection * rb.linearVelocity.magnitude;
+            }
         }
 
         Vector3 currentPosition = transform.position;
@@ -84,40 +90,18 @@ public class Arrow : MonoBehaviour
         previousPosition = currentPosition;
     }
 
-    private void Homing()
+    private void FindClosestEnemy()
     {
-        Transform closestEnemyPos = null;
+        enemiesInRange = Physics.OverlapSphere(transform.position, 5f, 1 << 6);
 
-        if (enemiesInRange.Length < 1 && closestEnemyPos == null)
+        foreach (Collider collider in enemiesInRange)
         {
-            enemiesInRange = Physics.OverlapSphere(transform.position, 2f, 6);
-
-            foreach (Collider collider in enemiesInRange)
+            float distance = Vector3.Distance(transform.position, collider.transform.position);
+            if(closestEnemyPos == null || closestEnemyDistance > distance)
             {
-                if (closestEnemyPos == null || (closestEnemyPos.position.x + closestEnemyPos.position.z) > (collider.transform.position.x + collider.transform.position.z))
-                    closestEnemyPos = collider.transform;
+                closestEnemyPos = collider.transform;
+                closestEnemyDistance = distance;
             }
-        }
-        else if (closestEnemyPos != null)
-        {
-            //coroutine
-        }
-    }
-
-    private IEnumerator RotateTowardsEnemy(Transform enemyTransform)
-    {
-        Quaternion startRot = transform.rotation;
-        Quaternion endRot = Quaternion.LookRotation(enemyTransform.position);
-        float time = 0;
-
-        while (time < 1f)
-        {
-            time += Time.deltaTime;
-            float progress = time / 1f;
-
-            transform.rotation = Quaternion.Slerp(startRot, endRot, progress);
-
-            yield return null;
         }
     }
 

@@ -14,6 +14,7 @@ public class DrawString : MonoBehaviour
     [HideInInspector] public bool UseMultiShot;
     [HideInInspector] public int MultiShotAngle;
     [HideInInspector] public bool IsHoming;
+    [HideInInspector] public float HomingTurnSpeed;
 
     [SerializeField] private LineRenderer trajectoryLine;
     [SerializeField] private Transform stringRestPoint;
@@ -103,6 +104,7 @@ public class DrawString : MonoBehaviour
 
         loadArrow.ArrowScript.CanPenetrate = CanPenetrate;
         loadArrow.ArrowScript.IsHoming = IsHoming;
+        loadArrow.ArrowScript.HomingTurnSpeed = HomingTurnSpeed;
         if (UseMultiShot)
         {
             lowerArrow = Instantiate(loadArrow.ArrowObject, loadArrow.ArrowObject.transform.position, loadArrow.ArrowObject.transform.rotation * Quaternion.Euler(MultiShotAngle, 0, 0));

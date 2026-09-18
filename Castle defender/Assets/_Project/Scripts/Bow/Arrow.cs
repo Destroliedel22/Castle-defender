@@ -15,6 +15,8 @@ public class Arrow : MonoBehaviour
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private float killVelocity = 2;
 
+    [SerializeField] private AudioClip hitClip;
+
     private Vector3 previousPosition;
     private float calculatedVelocity;
 
@@ -23,17 +25,19 @@ public class Arrow : MonoBehaviour
 
     private Collider[] enemiesInRange;
 
+    private AudioSource audioSource;
+
     private GameObject hitObject;
     private Rigidbody rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        print(collision.gameObject.name);
         Collider hitCollider = collision.GetContact(0).thisCollider;
 
         if (hitCollider == tipCollider)
@@ -63,6 +67,7 @@ public class Arrow : MonoBehaviour
                     Stuck();
                     break;
             }
+            audioSource.PlayOneShot(hitClip);
         }
     }
 

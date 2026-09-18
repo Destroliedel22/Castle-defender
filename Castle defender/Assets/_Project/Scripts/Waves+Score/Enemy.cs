@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private ShootPowerup shootPowerup;
 
+    [SerializeField] private AudioClip deathClip;
+
     protected Animator animator;
 
     protected const string WALKING_STATE = "Walking";
@@ -36,6 +38,8 @@ public class Enemy : MonoBehaviour
     private const string ATTACKING_STATE = "Attack";
 
     private Rigidbody[] rigidbodies;
+
+    private AudioSource audioSource;
 
     private float attackTimer;
 
@@ -51,6 +55,7 @@ public class Enemy : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbodies = GetComponentsInChildren<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     protected virtual void Start()
@@ -218,23 +223,27 @@ public class Enemy : MonoBehaviour
 
     public void Death()
     {
-        if (climbRoutine != null)
-            StopCoroutine(climbRoutine);
-
-        if (!powerUpShot)
+        if(!isDead)
         {
-            shootPowerup.LaunchPowerUp(transform);
-            powerUpShot = true;
-        }
+            if (climbRoutine != null)
+                StopCoroutine(climbRoutine);
 
-        OnDeath?.Invoke(this);
-        foreach (Rigidbody rb in rigidbodies)
-        {
-            rb.useGravity = true;
-            rb.isKinematic = false;
+            if (!powerUpShot)
+            {
+                shootPowerup.LaunchPowerUp(transform);
+                powerUpShot = true;
+            }
+
+            OnDeath?.Invoke(this);
+            foreach (Rigidbody rb in rigidbodies)
+            {
+                rb.useGravity = true;
+                rb.isKinematic = false;
+            }
+            animator.enabled = false;
+            audioSource.PlayOneShot(deathClip);
+            isDead = true;
+            Destroy(this.gameObject, 2);
         }
-        animator.enabled = false;
-        isDead = true;
-        Destroy(this.gameObject, 2);
     }
 }

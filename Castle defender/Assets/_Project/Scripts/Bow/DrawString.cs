@@ -20,6 +20,10 @@ public class DrawString : MonoBehaviour
     [SerializeField] private Transform stringRestPoint;
     [SerializeField] private LoadArrow loadArrow;
 
+    [SerializeField] private AudioSource drawAudioSource;
+    [SerializeField] private AudioSource releaseAudioSource;
+    [SerializeField] private AudioClip releaseClip;
+
     private Rigidbody rb;
     private Animator animator;
 
@@ -33,6 +37,9 @@ public class DrawString : MonoBehaviour
 
     private GameObject lowerArrow;
     private GameObject upperArrow;
+
+    private float lastClampDistance;
+    private bool audioPlaying;
 
     private void Awake()
     {
@@ -69,19 +76,38 @@ public class DrawString : MonoBehaviour
             normalizedDraw = Mathf.InverseLerp(Settings.MinDrawDistance, Settings.MaxDrawDistance, clampDistance);
             animator.Play("Wooden Bow", 0, normalizedDraw);
 
-            if (loadArrow.ArrowObject && UseMinigun)
-                Minigun();
-
-            if (loadArrow.ArrowObject && UseTrajectory)
+            if (clampDistance > lastClampDistance)
             {
-                //Trajectory
-                Vector3 trajectoryStartPos = loadArrow.ArrowObject.transform.position;
-                Vector3[] points = CalculateTrajectoryPoint(trajectoryStartPos, ArrowSpeed());
-                trajectoryLine.positionCount = points.Length;
-                trajectoryLine.SetPositions(points);
+                if(!audioPlaying)
+                {
+                    drawAudioSource.Play();
+                    audioPlaying = true;
+                }
             }
             else
-                trajectoryLine.positionCount = 0;
+            {
+                drawAudioSource.Stop();
+                audioPlaying = false;
+            }
+            lastClampDistance = clampDistance;
+
+            if (loadArrow.ArrowObject)
+            {
+                if (UseTrajectory)
+                {
+                    //Trajectory
+                    Vector3 trajectoryStartPos = loadArrow.ArrowObject.transform.position;
+                    Vector3[] points = CalculateTrajectoryPoint(trajectoryStartPos, ArrowSpeed());
+                    trajectoryLine.positionCount = points.Length;
+                    trajectoryLine.SetPositions(points);
+                }
+                else
+                    trajectoryLine.positionCount = 0;
+
+                if (UseMinigun)
+                    Minigun();
+            }
+                
         }
         else
         {
@@ -89,6 +115,9 @@ public class DrawString : MonoBehaviour
 
             normalizedDraw -= 0.1f;
             animator.Play("Wooden Bow", 0, normalizedDraw);
+
+            drawAudioSource.Stop();
+            audioPlaying = false;
 
             trajectoryLine.positionCount = 0;
         }
@@ -130,6 +159,7 @@ public class DrawString : MonoBehaviour
             Destroy(lowerArrow);
             Destroy(upperArrow);
         }
+        releaseAudioSource.PlayOneShot(releaseClip);
     }
 
     private void ShootArrow()

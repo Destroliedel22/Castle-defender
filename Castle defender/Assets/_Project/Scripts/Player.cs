@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -7,25 +9,21 @@ public class Player : MonoBehaviour
     public PlayerSettings Settings;
     public int Health;
 
-    [SerializeField] private CharacterController controller;
-
     private bool gameOverEventCalled;
-    private bool posFixed;
 
     private void Awake()
     {
         Health = Settings.Health;
     }
 
+    private void Start()
+    {
+        UnityEngine.XR.XRSettings.eyeTextureResolutionScale = 1.2f;
+        (GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset).renderScale = 1.2f;
+    }
+
     private void Update()
     {
-        if (controller.center.x != 0 && !posFixed)
-        {
-            transform.position = new Vector3(-controller.center.x, transform.position.y, -controller.center.z);
-            posFixed = true;
-        }
-
-
         if (Health <= 0)
         {
             if (!gameOverEventCalled)

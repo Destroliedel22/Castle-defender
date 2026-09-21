@@ -1857,7 +1857,7 @@ MonoBehaviour:
   m_Camera: {fileID: 3284131260727978462}
   m_OriginBaseGameObject: {fileID: 4399125361304961330}
   m_CameraFloorOffsetObject: {fileID: 8384136510283460350}
-  m_RequestedTrackingOriginMode: 1
+  m_RequestedTrackingOriginMode: 2
   m_CameraYOffset: 1.36144
 --- !u!143 &8140750955683263106
 CharacterController:
@@ -1968,7 +1968,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   Settings: {fileID: 11400000, guid: 9c725d10e272b6a48ad3c6f82914cec2, type: 2}
   Health: 0
-  controller: {fileID: 8140750955683263106}
 --- !u!1 &4622122527915875945
 GameObject:
   m_ObjectHideFlags: 0

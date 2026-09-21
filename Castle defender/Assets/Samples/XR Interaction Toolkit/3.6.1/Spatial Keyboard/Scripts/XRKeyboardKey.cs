@@ -287,7 +287,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.SpatialKeyboard
                 KeyClick();
         }
 
-        protected virtual void KeyClick()
+        public virtual void KeyClick()
         {
             // Local function of things to do to the key when pressed (Audio, etc.)
             KeyPressed();

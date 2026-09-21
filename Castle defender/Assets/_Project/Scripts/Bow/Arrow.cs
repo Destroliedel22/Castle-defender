@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit.Samples.SpatialKeyboard;
 
 public class Arrow : MonoBehaviour
 {
@@ -59,6 +61,17 @@ public class Arrow : MonoBehaviour
                 case ("Shield"):
                     if (CanPenetrate)
                         EnemyHit();
+                    Stuck();
+                    break;
+
+                case ("Button"):
+                    hitObject.GetComponent<Button>().onClick.Invoke();
+                    Stuck();
+                    break;
+
+                case ("KeyboardKey"):
+                    hitObject.GetComponent<XRKeyboardKey>().KeyClick();
+                    hitObject.GetComponent<XRKeyboardKey>().onClick.Invoke();
                     Stuck();
                     break;
 

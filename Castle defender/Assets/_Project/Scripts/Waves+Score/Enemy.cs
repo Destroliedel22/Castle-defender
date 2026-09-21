@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector] public Transform Target;
     [HideInInspector] public int waveSpawned;
+    [HideInInspector] public bool isDead;
 
     [SerializeField] private int dmg;
 
@@ -47,7 +48,6 @@ public class Enemy : MonoBehaviour
     private bool hasClimbed;
     private bool isClimbing;
     private bool powerUpShot;
-    private bool isDead;
 
     private Coroutine climbRoutine;
 

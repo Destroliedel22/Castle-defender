@@ -114,10 +114,13 @@ public class Arrow : MonoBehaviour
         foreach (Collider collider in enemiesInRange)
         {
             float distance = Vector3.Distance(transform.position, collider.transform.position);
-            if(closestEnemyPos == null || closestEnemyDistance > distance)
+            if (collider.transform.root.GetComponent<Enemy>().isDead == false)
             {
-                closestEnemyPos = collider.transform;
-                closestEnemyDistance = distance;
+                if (closestEnemyPos == null || closestEnemyDistance > distance)
+                {
+                    closestEnemyPos = collider.transform;
+                    closestEnemyDistance = distance;
+                }
             }
         }
     }

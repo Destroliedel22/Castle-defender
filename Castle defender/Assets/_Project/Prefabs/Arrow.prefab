@@ -110,7 +110,6 @@ MonoBehaviour:
   tipCollider: {fileID: 5498689941365892902}
   trailRenderer: {fileID: 1198383387855444153}
   killVelocity: 2
-  flyClip: {fileID: 8300000, guid: c8a598e786ca1044eac94d8d5f6db748, type: 3}
   hitClip: {fileID: 8300000, guid: ed51daeb81868b049888240dfe57028d, type: 3}
 --- !u!65 &5498689941365892902
 BoxCollider:

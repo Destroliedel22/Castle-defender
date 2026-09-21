@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Homing
   powerUpTime: 20
-  homingTurnSpeed: 3
+  homingTurnSpeed: 2
 --- !u!65 &-8338296544277576352
 BoxCollider:
   m_ObjectHideFlags: 0
